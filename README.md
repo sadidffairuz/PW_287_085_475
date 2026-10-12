@@ -1,4 +1,4 @@
-# PW_287_085_475 — BatuRafting
+# PW_287_085_475 — ExploreHub & BatuRafting
 
 Repository Tugas Mata Kuliah **Pemrograman Web**  
 Laboratorium Informatika Universitas Muhammadiyah Malang  
@@ -6,32 +6,37 @@ Kelompok: **287 — 085 — 475**
 
 ---
 
-## 🌊 BatuRafting — Sprint 02 (Tailwind CSS & JavaScript DOM)
+## 🧭 ExploreHub — Sprint 02 (Branch: `ExploreHUB`)
+Platform eksplorasi dan reservasi petualangan wisata Indonesia dengan desain editorial, peta interaktif, serta integrasi **Fetch API & Dynamic DOM Manipulation** sesuai Modul 2.
 
+### ✨ Implementasi Sprint 02 Modul 2 ExploreHub:
+1. **Task 01: Connect to API (Fetch API & Parsing JSON)**
+   - Mengambil data destinasi petualangan secara asynchronous (`async/await`) menggunakan `fetch()`.
+   - Melakukan pengecekan manual `response.ok` sesuai ketentuan Modul 2 Bab 9.3 untuk menangkap status HTTP server.
+   - Parsing response stream menjadi objek JavaScript menggunakan `await response.json()`.
+   - Menggunakan error handling `try...catch` yang kuat.
+2. **Task 02: Display API Data (DOM Manipulation Dinamis)**
+   - Merender kartu petualangan dinamis ke interface ExploreHub menggunakan **Template Literals** (`` `...${...}...` ``).
+   - Menggunakan array methods ES6+: `.map()`, `.filter()`, `.find()`, dan `.forEach()`.
+   - Menampilkan detail informasi lengkap: gambar destinasi, badge kategori (Air, Alam, Adrenalin, Budaya), rating bintang & jumlah ulasan, kota & provinsi, deskripsi singkat, chip durasi & kesulitan, harga format rupiah (`Intl.NumberFormat`), dan tautan pemesanan ke `booking.html`.
+   - Modal popup interaktif untuk melihat fasilitas lengkap dan detail aktivitas saat tombol *Detail* diklik.
+   - Fitur pencarian real-time saat pengguna mengetik (event `input`) dan filter kategori (event `click`).
+3. **Task 03: Handle API State (Loading Spinner, Success Data, Error Handling & Tombol Coba Lagi)**
+   - **Loading State**: Feedback visual berupa spinner berputar elegan (`.spinner-editorial`) saat data sedang diambil dari API.
+   - **Success State**: Menampilkan grid kartu petualangan dan badge status *API Live Terhubung* secara real-time.
+   - **Error Handling & Tombol Coba Lagi**: Menampilkan pesan error elegan jika koneksi gagal, dilengkapi tombol **↻ Coba Lagi** (`#apiRetryBtn`) untuk mengambil ulang data serta tombol cadangan offline (`#apiFallbackBtn`).
+   - **Tombol Simulasi Error**: Memudahkan asisten lab atau penguji menguji responsivitas penanganan error dan tombol Coba Lagi secara langsung.
+
+---
+
+## 🌊 BatuRafting — Sprint 02 (Tailwind CSS & JavaScript DOM)
 Website prototype penyedia aktivitas wisata rafting, outbound, dan paintball di Kota Batu.
 
-### ✨ Fitur & Pembaruan Sprint 02:
-1. **HTML5 Semantic & Layout Responsif**: Struktur halaman modern yang ramah aksesibilitas di perangkat mobile, tablet, dan desktop.
-2. **Tailwind CSS v4 Integration**:
-   - Styling utility-first via `@tailwindcss/cli` & `tailwindcss`.
-   - File input: `apps/baturafting/assets/css/input.css`
-   - File output: `apps/baturafting/assets/css/output.css`
-   - Fallback browser runtime CDN untuk kemudahan preview.
-   - Tema warna kustom (Primary Deep Teal, Accent Amber, Surface Soft).
-3. **JavaScript Interaktif & DOM Manipulation**:
-   - Navigasi responsif (mobile toggle menu).
-   - Interaksi lengkap simulasi booking (pemilihan paket, tanggal, jumlah peserta, kalkulasi biaya dinamis dengan `Intl.NumberFormat`, feedback pesan status).
-   - Accordion detail fasilitas paket layanan.
-4. **Dokumentasi Lengkap**:
-   - `01-project-charter.md`
-   - `02-requirements.md`
-   - `03-user-flow.md`
-   - `04-database.md`
-   - `05-architecture.md`
-   - `06-ui-ux.md`
-   - `07-testing.md`
-   - `08-sprint-log.md`
-   - `08-meeting-notes.md`
+### ✨ Fitur BatuRafting:
+1. **HTML5 Semantic & Layout Responsif**
+2. **Tailwind CSS v4 Integration** (`input.css` -> `output.css`)
+3. **JavaScript DOM**: Mobile navigation toggle, form kalkulasi booking paket, accordion fasilitas.
+4. **Dokumentasi Lengkap**: Charter, requirements, testing, UI/UX, dll.
 
 ---
 
@@ -40,15 +45,20 @@ Website prototype penyedia aktivitas wisata rafting, outbound, dan paintball di 
 ```text
 PW_287_085_475/
 ├── apps/
-│   └── baturafting/
-│       ├── admin/              # Halaman dashboard & manajemen admin
+│   ├── baturafting/            # Aplikasi BatuRafting
+│   │   ├── admin/              # Halaman dashboard & manajemen admin
+│   │   ├── assets/             # CSS & JS BatuRafting
+│   │   ├── auth/               # Halaman login, register, forgot-password
+│   │   ├── docs/               # Dokumentasi lengkap BatuRafting
+│   │   ├── public/             # Halaman publik (index, booking, service, dll.)
+│   │   └── package.json
+│   └── explorehub/             # Aplikasi ExploreHub (Sprint 02)
 │       ├── assets/
-│       │   ├── css/            # input.css, output.css (Tailwind), style.css
-│       │   └── js/             # main.js (DOM manipulation & event listeners)
-│       ├── auth/               # Halaman login, register, forgot-password
-│       ├── docs/               # Dokumentasi charter, requirements, testing, dll.
-│       ├── public/             # Halaman publik (index, booking, service, tourism, gallery, contact)
-│       ├── package.json        # Konfigurasi npm build Tailwind CSS
+│       │   ├── css/style.css   # Styling editorial theme & API catalog
+│       │   ├── data/           # destinations.json (REST API dataset)
+│       │   └── js/             # main.js (Task 01, 02, 03) & map.js
+│       ├── docs/               # design-direction.md
+│       ├── public/             # index.html, maps.html, booking.html
 │       └── README.md
 ├── 1.html                      # Sprint 01 landing page
 ├── 2.css                       # Sprint 01 stylesheet
@@ -59,18 +69,11 @@ PW_287_085_475/
 
 ## 🚀 Panduan Menjalankan
 
-### 1. Menjalankan Langsung di Browser
-- Buka folder `apps/baturafting/public/`
-- Klik dua kali file `index.html` pada browser (Chrome / Edge / Firefox)
-- Styling Tailwind CSS dan skrip JavaScript akan langsung aktif.
+### ExploreHub
+1. Masuk ke folder `apps/explorehub/public/`.
+2. Buka `index.html` langsung di browser atau jalankan dengan ekstensi **Live Server**.
+3. Navigasikan ke menu **Live API** untuk melihat implementasi Task 01, 02, dan 03.
 
-### 2. Melakukan Build Tailwind CSS (Opsional)
-```bash
-cd apps/baturafting
-npm install
-npm run build
-```
-Untuk mode watch pengembangan:
-```bash
-npm run dev
-```
+### BatuRafting
+1. Masuk ke folder `apps/baturafting/public/`.
+2. Buka `index.html` pada browser.

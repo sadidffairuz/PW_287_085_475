@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ExploreHub — Jelajahi Indonesia</title>
+  <meta name="description" content="ExploreHub membantu kamu menemukan pengalaman wisata dan petualangan terbaik di Indonesia.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body class="landing-page">
+  <header class="site-nav">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">EH</span>
+      <span>Explore<span>Hub</span></span>
+    </a>
+    <nav>
+      <a href="#jelajah">Jelajah</a>
+      <a href="#pengalaman">Pengalaman</a>
+      <a href="#eksplorasi-api">Live API</a>
+      <a href="maps.html">Peta</a>
+      <a href="booking.html">Booking</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="login-link" href="#">Masuk</a>
+      <a class="nav-button" href="booking.html">Mulai Jelajah</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ORANGE / SAND HERO -->
+    <section class="hero-sand" id="jelajah">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="eyebrow">INDONESIA · THE EXTRAORDINARY EVERYDAY</p>
+        <h1>Temukan Indonesia,<br><em>satu petualangan</em><br>setiap perjalanan.</h1>
+        <p class="hero-copy">Dari arung jeram di Jawa sampai laut biru di Nusa Tenggara. Temukan aktivitas, tempat, dan penyedia wisata yang bisa kamu pesan dalam satu tempat.</p>
+        <div class="hero-actions">
+          <a class="button button-light" href="#pengalaman">Lihat Pengalaman <span>↗</span></a>
+          <a class="text-link light-link" href="maps.html">Buka peta Indonesia →</a>
+        </div>
+      </div>
+      <div class="hero-cards" aria-label="Destinasi pilihan">
+        <article class="hero-card hero-card-main">
+          <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1100&q=85" alt="Pemandangan tropis Indonesia">
+          <div><small>BALI · UBUD</small><strong>Tenang di tengah tropis.</strong></div>
+        </article>
+        <article class="hero-card hero-card-small">
+          <img src="https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?auto=format&fit=crop&w=700&q=85" alt="Pantai Indonesia">
+          <div><small>NUSA TENGGARA</small><strong>Laut yang menunggu dijelajahi.</strong></div>
+        </article>
+      </div>
+      <div class="scroll-cue"><span></span> Geser untuk menjelajah</div>
+    </section>
+
+    <!-- GREEN DISCOVERY SECTION -->
+    <section class="green-discovery" id="pengalaman">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow dark">PILIH CARA BERTUALANG</p>
+          <h2>Bukan sekadar tempat.<br><em>Ini pengalamanmu.</em></h2>
+        </div>
+        <p class="section-intro">Cari sesuatu yang cocok dengan mood perjalananmu. Mau basah-basahan, naik gunung, menikmati alam, atau sekadar mencari tempat baru?</p>
+      </div>
+
+      <div class="experience-grid">
+        <a class="experience-feature" href="booking.html?activity=Rafting">
+          <img src="https://images.unsplash.com/photo-1530866495561-507c1c9b4b4f?auto=format&fit=crop&w=1300&q=85" alt="Aktivitas rafting">
+          <div class="experience-caption">
+            <span>01 / AIR</span>
+            <h3>Rafting &amp; Water</h3>
+            <p>Arus deras, sungai jernih, dan cerita yang dibawa pulang.</p>
+          </div>
+        </a>
+
+        <div class="experience-stack">
+          <a class="experience-card" href="booking.html?activity=Camping">
+            <img src="https://images.unsplash.com/photo-1475483768296-6163e08872a1?auto=format&fit=crop&w=900&q=85" alt="Camping di alam">
+            <div><span>02 / ALAM</span><h3>Camping</h3></div>
+          </a>
+          <a class="experience-card" href="booking.html?activity=Offroad">
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=85" alt="Petualangan offroad">
+            <div><span>03 / ADRENALIN</span><h3>Offroad &amp; Adventure</h3></div>
+          </a>
+        </div>
+
+        <div class="experience-list">
+          <div class="list-label">JELAJAH BERDASARKAN MINAT</div>
+          <a href="booking.html?activity=Trekking">Trekking <span>↗</span></a>
+          <a href="booking.html?activity=Diving">Diving &amp; Snorkeling <span>↗</span></a>
+          <a href="booking.html?activity=Paragliding">Paralayang <span>↗</span></a>
+          <a href="booking.html?activity=Outbound">Outbound <span>↗</span></a>
+          <a href="booking.html?activity=Wisata Alam">Wisata Alam <span>↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE API EXPLORATION SECTION (TASK 01, 02, 03) -->
+    <section class="api-catalog-section" id="eksplorasi-api">
+      <div class="api-section-header">
+        <div class="api-header-text">
+          <p class="eyebrow dark">KATALOG PETUALANGAN REAL-TIME · SPRINT 02</p>
+          <h2>Destinasi &amp; Aktivitas Pilihan<br><em>Terhubung Live REST API.</em></h2>
+          <p class="api-header-desc">
+            Data petualangan diambil secara dinamis dari REST API menggunakan <code>fetch()</code> dan parsing JSON (<strong>Task 01</strong>), dirender ke tampilan DOM secara interaktif (<strong>Task 02</strong>), serta dilengkapi loading spinner, penanganan error, dan tombol Coba Lagi (<strong>Task 03</strong>).
+          </p>
+        </div>
+        <div class="api-status-card">
+          <div class="api-status-indicator" id="apiStatusIndicator">
+            <span class="status-dot"></span>
+            <span id="apiStatusLabel">Memeriksa API...</span>
+          </div>
+          <div class="api-stats-pill">
+            <span id="destinationCountBadge">0 Petualangan</span>
+            <span class="divider">•</span>
+            <span id="activeFilterBadge">Semua Kategori</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FILTER & SEARCH TOOLBAR -->
+      <div class="api-toolbar">
+        <div class="api-search-wrapper">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="apiSearchInput" placeholder="Cari petualangan, kota, daerah, atau aktivitas...">
+          <button id="clearSearchBtn" class="clear-search-btn" title="Hapus Pencarian" style="display:none;">✕</button>
+        </div>
+
+        <div class="api-category-filters" id="categoryFilterContainer">
+          <button class="cat-pill active" data-category="all">Semua</button>
+          <button class="cat-pill" data-category="air">🌊 Air &amp; Sungai</button>
+          <button class="cat-pill" data-category="alam">🏔️ Gunung &amp; Alam</button>
+          <button class="cat-pill" data-category="adrenalin">⚡ Adrenalin</button>
+          <button class="cat-pill" data-category="budaya">🏛️ Budaya</button>
+        </div>
+
+        <!-- DEMO TOOL: SIMULASI ERROR UNTUK EVALUASI ASISTEN LAB -->
+        <div class="api-dev-actions">
+          <button id="simulateErrorBtn" class="dev-action-btn" title="Klik untuk menguji tampilan Error State & Tombol Coba Lagi">
+            ⚠️ Simulasi Error (Demo)
+          </button>
+        </div>
+      </div>
+
+      <!-- TASK 03: FEEDBACK LOADING SPINNER -->
+      <div id="apiLoadingState" class="api-state-container api-loading-state" style="display:none;">
+        <div class="spinner-editorial"></div>
+        <h3>Memuat Data dari API...</h3>
+        <p>Mengambil data destinasi petualangan dan mengurai JSON secara asynchronous.</p>
+      </div>
+
+      <!-- TASK 03: ERROR HANDLING & TOMBOL COBA LAGI -->
+      <div id="apiErrorState" class="api-state-container api-error-state" style="display:none;">
+        <div class="error-icon-box">✕</div>
+        <h3>Gagal Menghubungi API</h3>
+        <p id="apiErrorMessage" class="error-msg-text">Terjadi kendala saat mengambil data petualangan.</p>
+        <div class="error-actions-group">
+          <button id="apiRetryBtn" class="button button-sand">
+            ↻ Coba Lagi
+          </button>
+          <button id="apiFallbackBtn" class="button button-outline-dark">
+            Gunakan Data Cadangan (Offline)
+          </button>
+        </div>
+      </div>
+
+      <!-- EMPTY STATE (JIKA HASIL SEARCH TIDAK DITEMUKAN) -->
+      <div id="apiEmptyState" class="api-state-container api-empty-state" style="display:none;">
+        <div class="empty-icon-box">🔍</div>
+        <h3>Tidak Ada Petualangan Ditemukan</h3>
+        <p>Coba gunakan kata kunci lain atau pilih kategori yang berbeda.</p>
+        <button id="resetSearchBtn" class="button button-dark">Reset Pencarian</button>
+      </div>
+
+      <!-- TASK 02: DYNAMIC DOM GRID -->
+      <div id="destinationGrid" class="destination-grid">
+        <!-- Kartu di-render dinamis oleh JavaScript -->
+      </div>
+    </section>
+
+    <!-- MODAL DETAIL DESTINASI / PETUALANGAN -->
+    <div id="destinationDetailModal" class="modal-backdrop" style="display:none;">
+      <div class="modal-dialog">
+        <button id="closeDetailModalBtn" class="modal-close-btn" aria-label="Tutup Detail">✕</button>
+        <div id="modalDetailBody" class="modal-content-wrap">
+          <!-- Diisi dinamis oleh JavaScript saat kartu diklik -->
+        </div>
+      </div>
+    </div>
+
+    <!-- MAP CTA -->
+    <section class="map-teaser">
+      <div class="map-teaser-copy">
+        <p class="eyebrow dark">LIHAT DI SEKITARMU</p>
+        <h2>Indonesia terlalu luas<br>untuk dicari <em>sendirian.</em></h2>
+        <p>Aktifkan lokasi dan temukan pengalaman yang tersedia di dekatmu. Atau pilih kota tujuanmu sendiri.</p>
+        <a class="button button-dark" href="maps.html">Jelajahi Peta <span>→</span></a>
+      </div>
+      <div class="map-art" aria-hidden="true">
+        <div class="map-lines"></div>
+        <span class="map-pin pin-a">✦</span>
+        <span class="map-pin pin-b">●</span>
+        <span class="map-pin pin-c">●</span>
+        <span class="map-label label-a">Malang</span>
+        <span class="map-label label-b">Bali</span>
+        <span class="map-label label-c">Lombok</span>
+      </div>
+    </section>
+
+    <!-- BOOKING PREVIEW -->
+    <section class="booking-preview">
+      <div class="booking-photo">
+        <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1200&q=85" alt="Perjalanan di Indonesia">
+      </div>
+      <div class="booking-copy">
+        <p class="eyebrow">SIAP BERANGKAT?</p>
+        <h2>Temukan tanggal.<br><em>Pesan tempatnya.</em></h2>
+        <p>Lihat jadwal yang tersedia, pilih jumlah peserta, lalu hubungi penyedia wisata untuk konfirmasi. Sederhana, jelas, tanpa tebak-tebakan.</p>
+        <a class="button button-light" href="booking.html">Cari Jadwal &amp; Booking →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand"><span class="brand-mark">EH</span><strong>ExploreHub</strong></div>
+    <p>Jelajahi Indonesia. Temukan ceritamu.</p>
+    <div class="footer-links"><a href="maps.html">Peta</a><a href="booking.html">Booking</a><a href="#">Tentang</a><a href="#">Bantuan</a></div>
+    <small>© 2026 ExploreHub · Proyek Pemrograman Web</small>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

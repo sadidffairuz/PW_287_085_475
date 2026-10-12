@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peta ExploreHub — Jelajahi Sekitarmu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body class="map-page">
+  <header class="map-nav">
+    <a class="brand" href="index.html"><span class="brand-mark">EH</span><span>Explore<span>Hub</span></span></a>
+    <div class="map-nav-center">JELAJAHI INDONESIA</div>
+    <a class="map-back" href="index.html">← Kembali</a>
+  </header>
+
+  <main class="map-shell">
+    <aside class="map-panel">
+      <p class="eyebrow">PETA JELAJAH</p>
+      <h1>Cari petualangan<br><em>di dekatmu.</em></h1>
+      <p class="panel-copy">Gunakan lokasi perangkatmu atau cari kota tujuan. Klik marker untuk melihat aktivitas dan lanjut booking.</p>
+
+      <button id="locateBtn" class="location-button">⌖ Gunakan lokasi saya</button>
+
+      <label class="search-label" for="citySearch">Cari kota / destinasi</label>
+      <div class="search-box">
+        <input id="citySearch" type="text" placeholder="Contoh: Malang, Bali, Lombok">
+        <button id="searchBtn">Cari</button>
+      </div>
+
+      <div class="filter-title">FILTER PENGALAMAN</div>
+      <div class="filter-row">
+        <button class="filter active" data-type="all">Semua</button>
+        <button class="filter" data-type="air">Air</button>
+        <button class="filter" data-type="alam">Alam</button>
+        <button class="filter" data-type="adrenalin">Adrenalin</button>
+      </div>
+
+      <div id="mapResult" class="map-result">
+        <small>REKOMENDASI</small>
+        <strong>8 pengalaman tersedia</strong>
+        <span>Pilih marker di peta untuk melihat detail.</span>
+      </div>
+    </aside>
+
+    <section class="map-view">
+      <div id="map"></div>
+      <div class="map-legend">
+        <span><i class="dot air"></i> Air</span>
+        <span><i class="dot alam"></i> Alam</span>
+        <span><i class="dot adrenalin"></i> Adrenalin</span>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="../assets/js/map.js"></script>
+</body>
+</html>
