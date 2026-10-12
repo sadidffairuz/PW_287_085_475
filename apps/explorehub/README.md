@@ -1,46 +1,85 @@
-# ExploreHub — Sprint 02 Prototype
+# ExploreHub — Platform Eksplorasi Wisata & Program Prioritas
 
-ExploreHub adalah platform eksplorasi wisata Indonesia dengan satu identitas visual editorial/adventure.
+ExploreHub adalah platform eksplorasi wisata Indonesia terpadu dengan satu identitas visual editorial/adventure, menggabungkan frontend modern (JavaScript API) dan backend Server-Side Rendering (PHP SSR).
 
 ## 🎨 Arah Visual
-Semua halaman memakai satu palet utama: cream/paper + forest + terracotta sebagai aksen.
-Referensi visual digunakan untuk **komposisi, hierarki, framing foto, navigasi, dan cara menampilkan fitur**.
-
-## 📑 Halaman
-- `public/index.html` — landing page editorial & katalog petualangan live REST API.
-- `public/maps.html` — halaman peta dengan panel informasi + area Leaflet map interaktif.
-- `public/booking.html` — halaman reservasi dengan form dinamis & redirect WhatsApp.
-- `assets/data/destinations.json` — dataset REST API untuk petualangan Indonesia.
-
-## 🚀 Fitur Baru Sprint 02 (Modul 2 - JavaScript & API Integration)
-
-### • Task 01: Connect to API (Fetch API & Parsing JSON)
-- Menggunakan fungsi asynchronous `async/await` di `assets/js/main.js` (`fetchDestinationData()`).
-- Melakukan HTTP request dengan method GET ke REST API endpoint.
-- Validasi manual `response.ok` sesuai panduan Modul 2 Halaman 31-32 untuk menangkap error kode status HTTP (404, 500, dll.).
-- Parsing stream data secara asynchronous menggunakan `await response.json()`.
-- Error handling dengan blok `try...catch` dan pencatatan error di konsol.
-
-### • Task 02: Display API Data (DOM Manipulation Dinamis)
-- Menggunakan **Template Literal** (`` `...${...}...` ``) untuk merender kartu-kartu petualangan secara dinamis ke dalam grid container DOM (`#destinationGrid`).
-- Menggunakan **Array Methods ES6+**:
-  - `.filter()`: Menyaring petualangan berdasarkan kata kunci pencarian real-time dan kategori terpilih (Air, Alam, Adrenalin, Budaya).
-  - `.map()`: Mentransformasikan array objek JSON ke dalam elemen kartu HTML.
-  - `.find()`: Menemukan 1 objek destinasi spesifik berdasarkan ID saat tombol *Detail* diklik untuk membuka modal popup.
-  - `.forEach()`: Memasang event listener ke seluruh elemen filter, tombol detail kartu, dan tombol aksi.
-- Informasi lengkap kartu: foto beresolusi tinggi, badge kategori, badge rating bintang, lokasi & rute, deskripsi, chip durasi & kesulitan, harga dengan format mata uang rupiah (`Intl.NumberFormat`), tombol modal detail, dan tautan langsung ke halaman booking dengan query parameter otomatis.
-
-### • Task 03: Handle API State (Loading Spinner, Error Handling & Tombol Coba Lagi)
-- **Loading State**: Menampilkan animasi spinner berputar (`.spinner-editorial`) dan teks informatif saat proses pengambilan data dari API sedang berlangsung.
-- **Success State**: Menampilkan grid kartu petualangan, status badge *API Live Connected*, dan ringkasan jumlah petualangan yang berhasil dimuat.
-- **Error State**: Menampilkan notifikasi error box elegan jika terjadi kegagalan jaringan atau endpoint bermasalah, dilengkapi pesan error dinamis.
-- **Tombol Coba Lagi (Retry Button)**: Tombol `#apiRetryBtn` yang memicu pemanggilan ulang `fetchDestinationData()` secara reaktif untuk memulihkan koneksi data.
-- **Data Cadangan (Offline Fallback)**: Tombol cadangan data lokal `#apiFallbackBtn` untuk menjamin aplikasi 100% aman dan tetap dapat didemokan meskipun koneksi internet lab/kampus terputus.
-- **Tombol Simulasi Error**: Tombol `#simulateErrorBtn` untuk memudahkan demonstrasi pengujian state error dan tombol Coba Lagi di hadapan asisten lab/dosen.
+Semua halaman memakai satu palet utama: cream/paper (`#f4efe4`, `#fbf8f0`) + forest (`#173d32`) + terracotta/sand (`#d76b2d`) sebagai aksen.
 
 ---
 
-## 💻 Panduan Menjalankan
-1. Buka folder `public/`.
-2. Buka `index.html` langsung di browser atau jalankan dengan ekstensi **Live Server** di VS Code.
-3. Kunjungi bagian **Live API** pada menu navigasi untuk melihat implementasi Task 01, Task 02, dan Task 03.
+## 📑 Halaman & Modul
+- `public/index.html` — Landing page editorial & katalog petualangan live REST API (Modul 2).
+- `public/program-prioritas.php` — Dashboard Program Prioritas Nasional & Sinergi Pariwisata (Modul 3 PHP SSR).
+- `public/index.php` — Entry point PHP server-side di folder public.
+- `index.php` — Root entry point yang mengarahkan ke dashboard PHP.
+- `public/maps.html` — Peta eksplorasi interaktif berbasis Leaflet.
+- `public/booking.html` — Halaman formulir reservasi dinamis & konfirmasi WhatsApp.
+- `assets/data/destinations.json` — Dataset REST API petualangan Indonesia.
+
+---
+
+## 🐘 Implementasi Modul 3: PHP Prosedural & Server-Side Rendering (SSR)
+
+### • Task 01: Create PHP Page
+- **Lokasi File:** `public/program-prioritas.php` dan `public/index.php`.
+- **Variabel Utama PHP yang Dideklarasikan:**
+  - `$namaPresiden = "Prabowo Subianto";`
+  - `$wakilPresiden = "Gibran Rakabuming Raka";`
+  - `$periode = "2024 - 2029";`
+  - `$statusProgram = "Aktif Berjalan";`
+  - `$namaKabinet = "Kabinet Merah Putih";`
+  - `$visiPemerintahan = "Bersama Indonesia Maju Menuju Indonesia Emas 2045";`
+  - `$programPrioritas = [ ... ];`
+- Variabel ditampilkan secara elegan pada profil header dan ringkasan metrik statistik.
+
+### • Task 02: Process Data with PHP
+- **Array Multidimensi:**
+  Variabel `$programPrioritas` menyimpan kumpulan data program secara terstruktur (ID, nama, kategori, sektor, lokasi, alokasi anggaran, persentase progres, status, target waktu, deskripsi, gambar cover, dan daftar capaian).
+- **Conditional Status & Badge (`renderStatusBadge($status)`):**
+  Menggunakan struktur seleksi kondisional PHP (`switch/case`) untuk menentukan warna, ikon, dan styling status badge secara otomatis:
+  - `Aktif Berjalan` (Hijau emerald dengan live dot)
+  - `Sedang Berjalan` (Biru laut)
+  - `Siap Diresmikan` (Amber keemasan)
+  - `Selesai Tahap 1` (Hijau daun)
+  - `Dalam Perencanaan` (Oranye terracotta)
+- **Loop Penomoran:**
+  Menggunakan perulangan `foreach ($programTampil as $item)` dengan penomoran berurut format dua digit (`sprintf("%02d", $nomorIndex++)`) sehingga menghasilkan `#01 PRIORITAS`, `#02 PRIORITAS`, dst.
+- **Kalkulasi Agregat:**
+  Menggunakan fungsi bawaan PHP seperti `count()`, `array_sum()`, `array_column()`, dan pemformatan mata uang rupiah (`formatRupiahSingkat()`).
+
+### • Task 03: Build Dynamic Server-Side Content (SSR)
+- **Server-Side Rendering (SSR):**
+  Seluruh konten kartu program prioritas di-generate langsung dari server PHP sebelum dikirimkan ke browser client.
+- **Keselarasan Struktur & Tema:**
+  Melanjutkan desain tema editorial ExploreHub yang menyatu dengan bagian katalog destinasi dan peta petualangan.
+- **Fitur Interaktif Server-Side:**
+  - Filter kategori berbasis GET request (`?kategori=pariwisata`, `?kategori=pangan`, dll.).
+  - Fitur pencarian kata kunci berbasis form GET (`?q=...`).
+  - Bar progres visual dinamis (`style="width: <?= $item['progres']; ?>%;"`).
+  - Integrasi tombol pemesanan dan sinergi langsung ke `booking.html`.
+  - Panel inspeksi kode sumber PHP di bagian bawah halaman untuk kemudahan verifikasi oleh asisten lab / dosen penguji.
+
+---
+
+## ⚡ Implementasi Modul 2: JavaScript DOM & Fetch API
+- **Task 01 (Connect to API):** `async/await fetch()` ke REST API endpoint dengan pengecekan `response.ok` dan `await response.json()`.
+- **Task 02 (Display API Data):** Template literals & DOM dynamic grid kartu destinasi dengan array method (`.map()`, `.filter()`, `.find()`, `.forEach()`).
+- **Task 03 (Handle API State):** Loading spinner feedback, error box dengan tombol **Coba Lagi**, offline fallback, dan tombol simulasi error.
+
+---
+
+## 🚀 Panduan Menjalankan
+
+### Cara 1: Menggunakan PHP Built-in Server (Sangat Disarankan)
+Buka terminal di folder `D:\KULIAH\PEMROGRAMAN WEB\ExploreHub_Sprint02_Editorial_UnifiedTheme` lalu jalankan:
+```bash
+php -S localhost:8000
+```
+Buka browser dan akses:
+- **`http://localhost:8000/public/program-prioritas.php`** (Halaman Program Prioritas PHP)
+- **`http://localhost:8000/public/index.html`** (Halaman Landing Page JS API)
+
+### Cara 2: Menggunakan XAMPP / Laragon
+1. Salin folder ke direktori `htdocs` (XAMPP) atau `www` (Laragon).
+2. Nyalakan service Apache.
+3. Buka browser pada `http://localhost/ExploreHub_Sprint02_Editorial_UnifiedTheme/public/program-prioritas.php`.

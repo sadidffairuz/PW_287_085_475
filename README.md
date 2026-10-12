@@ -6,26 +6,29 @@ Kelompok: **287 — 085 — 475**
 
 ---
 
-## 🧭 ExploreHub — Sprint 02 (Branch: `ExploreHUB`)
-Platform eksplorasi dan reservasi petualangan wisata Indonesia dengan desain editorial, peta interaktif, serta integrasi **Fetch API & Dynamic DOM Manipulation** sesuai Modul 2.
+## 🧭 ExploreHub — Sprint 02 & Modul 3 (Branch: `ExploreHUB`)
+Platform eksplorasi dan reservasi petualangan wisata Indonesia dengan desain editorial, peta interaktif, integrasi **Fetch API & Dynamic DOM Manipulation** (Modul 2), serta **PHP Prosedural & Server-Side Rendering (SSR)** (Modul 3).
 
-### ✨ Implementasi Sprint 02 Modul 2 ExploreHub:
-1. **Task 01: Connect to API (Fetch API & Parsing JSON)**
-   - Mengambil data destinasi petualangan secara asynchronous (`async/await`) menggunakan `fetch()`.
-   - Melakukan pengecekan manual `response.ok` sesuai ketentuan Modul 2 Bab 9.3 untuk menangkap status HTTP server.
-   - Parsing response stream menjadi objek JavaScript menggunakan `await response.json()`.
-   - Menggunakan error handling `try...catch` yang kuat.
-2. **Task 02: Display API Data (DOM Manipulation Dinamis)**
-   - Merender kartu petualangan dinamis ke interface ExploreHub menggunakan **Template Literals** (`` `...${...}...` ``).
-   - Menggunakan array methods ES6+: `.map()`, `.filter()`, `.find()`, dan `.forEach()`.
-   - Menampilkan detail informasi lengkap: gambar destinasi, badge kategori (Air, Alam, Adrenalin, Budaya), rating bintang & jumlah ulasan, kota & provinsi, deskripsi singkat, chip durasi & kesulitan, harga format rupiah (`Intl.NumberFormat`), dan tautan pemesanan ke `booking.html`.
-   - Modal popup interaktif untuk melihat fasilitas lengkap dan detail aktivitas saat tombol *Detail* diklik.
-   - Fitur pencarian real-time saat pengguna mengetik (event `input`) dan filter kategori (event `click`).
-3. **Task 03: Handle API State (Loading Spinner, Success Data, Error Handling & Tombol Coba Lagi)**
-   - **Loading State**: Feedback visual berupa spinner berputar elegan (`.spinner-editorial`) saat data sedang diambil dari API.
-   - **Success State**: Menampilkan grid kartu petualangan dan badge status *API Live Terhubung* secara real-time.
-   - **Error Handling & Tombol Coba Lagi**: Menampilkan pesan error elegan jika koneksi gagal, dilengkapi tombol **↻ Coba Lagi** (`#apiRetryBtn`) untuk mengambil ulang data serta tombol cadangan offline (`#apiFallbackBtn`).
-   - **Tombol Simulasi Error**: Memudahkan asisten lab atau penguji menguji responsivitas penanganan error dan tombol Coba Lagi secara langsung.
+### ✨ 1. Modul 3 (PHP Prosedural & Server-Side Rendering)
+- **Task 01: Create PHP Page**
+  - Menginisialisasi variabel PHP: `$namaPresiden` ("Prabowo Subianto"), `$wakilPresiden`, `$periode` ("2024 - 2029"), `$statusProgram` ("Aktif Berjalan"), `$namaKabinet`, `$visiPemerintahan`, dan `$programPrioritas`.
+- **Task 02: Process Data with PHP**
+  - **Array Multidimensi**: Array bersarang `$programPrioritas` menyimpan seluruh entitas program prioritas strategis (ID, nama, sektor, lokasi, anggaran, progres, status, target waktu, gambar, capaian).
+  - **Conditional Status / Badge**: Fungsi `renderStatusBadge($status)` berbasis `switch/case` kondisional untuk render badge visual otomatis (*Aktif Berjalan*, *Sedang Berjalan*, *Siap Diresmikan*, *Selesai Tahap 1*).
+  - **Loop Penomoran**: Perulangan `foreach` dengan kalkulasi penomoran format dua digit (`#01`, `#02`, dst.) menggunakan `sprintf("%02d", $index)`.
+  - **Kalkulasi Agregat**: `count()`, `array_sum()`, `array_column()`, dan format rupiah dinamis.
+- **Task 03: Build Dynamic Server-Side Content (SSR)**
+  - Server-Side Rendering (SSR) dinamis kartu program prioritas melanjutkan struktur dan identitas visual editorial ExploreHub (cream/paper + forest + sand).
+  - Filter kategori server-side (`?kategori=...`) dan pencarian query string (`?q=...`).
+  - Bar progres visual dinamis dan panel kode inspeksi transparan.
+
+### ✨ 2. Modul 2 (JavaScript DOM Manipulation & Fetch API)
+- **Task 01: Connect to API**
+  - Mengambil data via `async/await fetch()` dengan validasi manual `response.ok` dan `await response.json()`.
+- **Task 02: Display API Data**
+  - Render dinamis kartu petualangan DOM dengan template literals dan array methods (`.map()`, `.filter()`, `.find()`, `.forEach()`).
+- **Task 03: Handle API State**
+  - Loading spinner feedback, success data counter, error handling dengan tombol **↻ Coba Lagi** (`#apiRetryBtn`), offline fallback, dan tombol simulasi error.
 
 ---
 
@@ -52,13 +55,14 @@ PW_287_085_475/
 │   │   ├── docs/               # Dokumentasi lengkap BatuRafting
 │   │   ├── public/             # Halaman publik (index, booking, service, dll.)
 │   │   └── package.json
-│   └── explorehub/             # Aplikasi ExploreHub (Sprint 02)
+│   └── explorehub/             # Aplikasi ExploreHub (Sprint 02 & Modul 3)
 │       ├── assets/
-│       │   ├── css/style.css   # Styling editorial theme & API catalog
+│       │   ├── css/style.css   # Styling editorial theme, API catalog & SSR
 │       │   ├── data/           # destinations.json (REST API dataset)
-│       │   └── js/             # main.js (Task 01, 02, 03) & map.js
+│       │   └── js/             # main.js (Modul 2 JS API) & map.js
 │       ├── docs/               # design-direction.md
-│       ├── public/             # index.html, maps.html, booking.html
+│       ├── public/             # index.html, program-prioritas.php, index.php, maps.html, booking.html
+│       ├── index.php           # Entry point root PHP
 │       └── README.md
 ├── 1.html                      # Sprint 01 landing page
 ├── 2.css                       # Sprint 01 stylesheet
@@ -69,10 +73,15 @@ PW_287_085_475/
 
 ## 🚀 Panduan Menjalankan
 
-### ExploreHub
-1. Masuk ke folder `apps/explorehub/public/`.
-2. Buka `index.html` langsung di browser atau jalankan dengan ekstensi **Live Server**.
-3. Navigasikan ke menu **Live API** untuk melihat implementasi Task 01, 02, dan 03.
+### ExploreHub (PHP Modul 3 & JS API Modul 2)
+1. **Mode PHP Server:**
+   ```bash
+   cd apps/explorehub
+   php -S localhost:8000
+   ```
+   Akses `http://localhost:8000/public/program-prioritas.php` di browser.
+2. **Mode Frontend Langsung:**
+   Buka `apps/explorehub/public/index.html` langsung di browser atau via Live Server.
 
 ### BatuRafting
 1. Masuk ke folder `apps/baturafting/public/`.
