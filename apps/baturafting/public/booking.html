@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking — BatuRafting</title>
+  <!-- Tailwind CSS Output (NPM Compilation) -->
+  <link rel="stylesheet" href="../assets/css/output.css">
+  <!-- Tailwind CSS CDN Fallback -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body><header class="site-header">
+  <div class="container navbar">
+    <a class="logo" href="index.html">Batu<span>Rafting</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Buka navigasi" aria-expanded="false">☰</button>
+    <nav aria-label="Navigasi utama">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="service.html">Services</a></li>
+        <li><a href="tourism.html">Tourism</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="../auth/login.html">Login</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="page-hero"><div class="container"><h1>Booking Activity</h1><p>Prototype alur pemesanan. Belum terhubung ke database.</p></div></section>
+<section class="section"><div class="container"><div class="card">
+<div class="section-heading"><h2>Form Booking</h2><p>Isi data dasar untuk simulasi pengecekan jadwal.</p></div>
+<form class="booking-form" id="bookingForm">
+<div class="field"><label for="package">Paket</label><select id="package" required><option value="">Pilih paket</option><option value="Rafting 12 KM" data-price="200000">Rafting 12 KM</option><option value="Training Outbound" data-price="95000">Training Outbound</option><option value="Outbound & Rafting" data-price="285000">Outbound & Rafting</option><option value="Paintball" data-price="135000">Paintball</option></select></div>
+<div class="field"><label for="bookingDate">Tanggal</label><input id="bookingDate" type="date" required></div>
+<div class="field"><label for="participants">Peserta</label><input id="participants" type="number" min="1" max="100" value="10" required></div>
+<button class="btn btn-secondary" type="submit">Cek Ketersediaan</button>
+</form>
+<div id="bookingMessage" class="form-message" role="status" aria-live="polite"></div>
+</div></div></section>
+</main><footer class="site-footer">
+  <div class="container">
+    <strong>BatuRafting</strong>
+    <p>Website prototype Pemrograman Web — Sprint 02.</p>
+    <small>Data dan fitur booking pada tahap ini merupakan simulasi untuk kebutuhan pembelajaran.</small>
+  </div>
+</footer><script src="../assets/js/main.js"></script></body></html>

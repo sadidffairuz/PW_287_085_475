@@ -1,0 +1,22 @@
+{
+  "name": "baturafting-sprint02",
+  "version": "1.0.0",
+  "description": "BatuRafting - Sprint 02 with Tailwind CSS",
+  "main": "public/index.html",
+  "scripts": {
+    "build": "npx @tailwindcss/cli -i ./assets/css/input.css -o ./assets/css/output.css --minify",
+    "dev": "npx @tailwindcss/cli -i ./assets/css/input.css -o ./assets/css/output.css --watch"
+  },
+  "keywords": [
+    "tailwindcss",
+    "baturafting",
+    "sprint02",
+    "pemrograman-web"
+  ],
+  "author": "Laboratorium Informatika UMM",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
+}

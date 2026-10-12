@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Layanan — BatuRafting</title>
+  <!-- Tailwind CSS Output (NPM Compilation) -->
+  <link rel="stylesheet" href="../assets/css/output.css">
+  <!-- Tailwind CSS CDN Fallback -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body><header class="site-header">
+  <div class="container navbar">
+    <a class="logo" href="index.html">Batu<span>Rafting</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Buka navigasi" aria-expanded="false">☰</button>
+    <nav aria-label="Navigasi utama">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="service.html">Services</a></li>
+        <li><a href="tourism.html">Tourism</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="../auth/login.html">Login</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="page-hero"><div class="container"><h1>Our Services</h1><p>Pilih aktivitas yang sesuai dengan kebutuhan perjalananmu.</p></div></section>
+<section class="section"><div class="container"><div class="grid grid-3">
+<article class="card"><span class="badge">12 KM</span><h3>Rafting</h3><p>Aktivitas rafting dengan perlengkapan keselamatan dan pendamping.</p><button class="btn btn-outline" data-service-detail="raftingDetail">Lihat Detail</button><div id="raftingDetail" hidden><ul class="detail-list"><li>Safety set</li><li>Guide</li><li>Rescue team</li><li>Transport lokal sesuai paket</li></ul></div></article>
+<article class="card"><span class="badge">Team Building</span><h3>Outbound</h3><p>Program permainan dan aktivitas kelompok untuk gathering.</p><button class="btn btn-outline" data-service-detail="outboundDetail">Lihat Detail</button><div id="outboundDetail" hidden><ul class="detail-list"><li>Ice breaking</li><li>Fun games</li><li>Team building</li><li>Problem solving</li></ul></div></article>
+<article class="card"><span class="badge">War Game</span><h3>Paintball</h3><p>Aktivitas permainan tim outdoor dengan perlengkapan pelindung.</p><button class="btn btn-outline" data-service-detail="paintballDetail">Lihat Detail</button><div id="paintballDetail" hidden><ul class="detail-list"><li>Marker</li><li>Peluru sesuai paket</li><li>Pelindung</li><li>Area permainan</li></ul></div></article>
+</div></div></section>
+</main><footer class="site-footer">
+  <div class="container">
+    <strong>BatuRafting</strong>
+    <p>Website prototype Pemrograman Web — Sprint 02.</p>
+    <small>Data dan fitur booking pada tahap ini merupakan simulasi untuk kebutuhan pembelajaran.</small>
+  </div>
+</footer><script src="../assets/js/main.js"></script></body></html>
