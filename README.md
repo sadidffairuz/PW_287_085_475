@@ -9,18 +9,18 @@ Kelompok: **287 — 085 — 475**
 ## 🧭 ExploreHub — Sprint 02 & Modul 3 (Branch: `ExploreHUB`)
 Platform eksplorasi dan reservasi petualangan wisata Indonesia dengan desain editorial, peta interaktif, integrasi **Fetch API & Dynamic DOM Manipulation** (Modul 2), serta **PHP Prosedural & Server-Side Rendering (SSR)** (Modul 3).
 
-### ✨ 1. Modul 3 (PHP Prosedural & Server-Side Rendering)
-- **Task 01: Create PHP Page**
-  - Menginisialisasi variabel PHP: `$namaPresiden` ("Prabowo Subianto"), `$wakilPresiden`, `$periode` ("2024 - 2029"), `$statusProgram` ("Aktif Berjalan"), `$namaKabinet`, `$visiPemerintahan`, dan `$programPrioritas`.
+### ✨ 1. Modul 3 (PHP Prosedural & Server-Side Rendering — Tema ExploreHUB)
+- **Task 01: Create PHP Page (Variabel PHP ExploreHUB)**
+  - Menginisialisasi variabel PHP yang relevan dengan ekosistem ExploreHUB: `$namaPlatform` ("ExploreHub"), `$tagline`, `$statusLayanan` ("Buka & Reservasi Aktif"), `$musimPetualangan`, `$pusatOperasional`, `$kontakLayanan`, dan `$programPrioritas`.
 - **Task 02: Process Data with PHP**
-  - **Array Multidimensi**: Array bersarang `$programPrioritas` menyimpan seluruh entitas program prioritas strategis (ID, nama, sektor, lokasi, anggaran, progres, status, target waktu, gambar, capaian).
-  - **Conditional Status / Badge**: Fungsi `renderStatusBadge($status)` berbasis `switch/case` kondisional untuk render badge visual otomatis (*Aktif Berjalan*, *Sedang Berjalan*, *Siap Diresmikan*, *Selesai Tahap 1*).
-  - **Loop Penomoran**: Perulangan `foreach` dengan kalkulasi penomoran format dua digit (`#01`, `#02`, dst.) menggunakan `sprintf("%02d", $index)`.
-  - **Kalkulasi Agregat**: `count()`, `array_sum()`, `array_column()`, dan format rupiah dinamis.
+  - **Array Multidimensi**: Array bersarang `$programPrioritas` menyimpan entitas paket petualangan alam & outdoor ExploreHUB (Rafting Brantas, Bromo Trekking, Offroad Merapi, Diving Menjangan, Camping Ranu Kumbolo, Paralayang Batu, Komodo Snorkeling, Wae Rebo).
+  - **Conditional Status / Badge**: Fungsi `renderStatusBadge($status)` berbasis `switch/case` untuk render badge ketersediaan slot (*Tersedia*, *Slot Terbatas*, *Hampir Penuh*, *Musim Terbaik*, *Promo Spesial*).
+  - **Loop Penomoran**: Perulangan `foreach` dengan penomoran berurut format dua digit (`#01`, `#02`, dst.) menggunakan `sprintf("%02d", $index)`.
+  - **Kalkulasi Agregat**: `count()`, `min()`, `max()`, `array_sum()`, dan pemformatan mata uang rupiah.
 - **Task 03: Build Dynamic Server-Side Content (SSR)**
-  - Server-Side Rendering (SSR) dinamis kartu program prioritas melanjutkan struktur dan identitas visual editorial ExploreHub (cream/paper + forest + sand).
-  - Filter kategori server-side (`?kategori=...`) dan pencarian query string (`?q=...`).
-  - Bar progres visual dinamis dan panel kode inspeksi transparan.
+  - Server-Side Rendering (SSR) dinamis kartu program petualangan prioritas melanjutkan struktur dan identitas visual editorial ExploreHub (cream/paper + forest + terracotta/sand).
+  - Filter kategori server-side (`?kategori=air`, `?kategori=alam`, `?kategori=adrenalin`, `?kategori=budaya`) dan pencarian query string (`?q=...`).
+  - Integrasi pemesanan langsung ke `booking.html` dan panel inspeksi variabel kode sumber PHP.
 
 ### ✨ 2. Modul 2 (JavaScript DOM Manipulation & Fetch API)
 - **Task 01: Connect to API**
@@ -75,9 +75,9 @@ PW_287_085_475/
 
 ### ExploreHub (PHP Modul 3 & JS API Modul 2)
 1. **Mode PHP Server:**
-   ```bash
+   ```powershell
    cd apps/explorehub
-   php -S localhost:8000
+   C:\xampp\php\php.exe -S localhost:8000
    ```
    Akses `http://localhost:8000/public/program-prioritas.php` di browser.
 2. **Mode Frontend Langsung:**
