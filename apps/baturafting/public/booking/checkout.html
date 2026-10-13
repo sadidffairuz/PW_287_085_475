@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout Booking — BatuRafting</title>
+  <link rel="stylesheet" href="../../assets/css/output.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container navbar">
+    <a class="logo" href="../index.html">Batu<span>Rafting</span></a>
+    <a class="btn btn-outline" href="../booking.html">Kembali ke Booking</a>
+  </div>
+</header>
+<main class="section">
+  <div class="container" style="max-width: 640px; margin: auto;">
+    <div class="card">
+      <span class="badge">Langkah 2: Konfirmasi Data</span>
+      <h1 style="margin-top: 12px; font-size: 1.8rem;">Checkout Booking</h1>
+      <p>Prototype Sprint 02: Ringkasan pemesanan sebelum pembayaran.</p>
+      <form class="grid" onsubmit="event.preventDefault(); window.location.href='success.html';">
+        <div class="field"><label>Nama Pemesan</label><input type="text" required placeholder="Nama Lengkap"></div>
+        <div class="field"><label>Nomor WhatsApp</label><input type="tel" required placeholder="08xxxxxxxxxx"></div>
+        <div class="field"><label>Catatan Khusus</label><textarea rows="3" placeholder="Opsional, misal request instruktur"></textarea></div>
+        <button class="btn btn-secondary" type="submit">Konfirmasi & Lanjutkan</button>
+      </form>
+    </div>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <strong>BatuRafting</strong>
+    <p>Website prototype Pemrograman Web — Sprint 02.</p>
+  </div>
+</footer>
+</body>
+</html>

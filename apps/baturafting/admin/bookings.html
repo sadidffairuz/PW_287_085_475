@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookings — Admin BatuRafting</title>
+  <!-- Tailwind CSS Output (NPM Compilation) -->
+  <link rel="stylesheet" href="../assets/css/output.css">
+  <!-- Tailwind CSS CDN Fallback -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container navbar">
+    <a class="logo" href="index.html">Batu<span>Rafting</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Buka navigasi" aria-expanded="false">☰</button>
+    <nav aria-label="Navigasi utama">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="schedules.html">Schedules</a></li>
+        <li><a href="bookings.html" class="active">Bookings</a></li>
+        <li><a href="customers.html">Customers</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li><a href="settings.html">Settings</a></li>
+        <li><a href="../public/index.html">Public View</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main class="section">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow" style="color:var(--primary)">Admin Area</span>
+      <h1>Bookings Management</h1>
+      <p>Kelola data reservasi dan status pesanan aktivitas wisata.</p>
+    </div>
+    <div class="card">
+      <p><strong>Prototype Sprint 02.</strong> Halaman ini merupakan struktur awal pengelolaan booking untuk integrasi CRUD dan database pada sprint berikutnya.</p>
+      <div style="margin-top: 16px;">
+        <span class="badge">Simulasi Data</span>
+        <p style="margin-top: 8px;">Daftar reservasi masuk akan ditampilkan di sini setelah koneksi backend/API diaktifkan.</p>
+      </div>
+    </div>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <strong>BatuRafting</strong>
+    <p>Website prototype Pemrograman Web — Sprint 02.</p>
+    <small>Data dan fitur booking pada tahap ini merupakan simulasi untuk kebutuhan pembelajaran.</small>
+  </div>
+</footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
