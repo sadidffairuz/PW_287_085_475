@@ -6,10 +6,23 @@ Kelompok: **287 — 085 — 475**
 
 ---
 
-## 🧭 ExploreHub — Sprint 02 & Modul 3 (Branch: `ExploreHUB`)
-Platform eksplorasi dan reservasi petualangan wisata Indonesia dengan desain editorial, peta interaktif, integrasi **Fetch API & Dynamic DOM Manipulation** (Modul 2), serta **PHP Prosedural & Server-Side Rendering (SSR)** (Modul 3).
+## 🧭 ExploreHub — Sprint 02, Modul 3 & Sprint 05 OOP (Branch: `ExploreHUB`)
+Platform eksplorasi dan reservasi petualangan wisata Indonesia dengan desain editorial, peta interaktif, integrasi **Fetch API & Dynamic DOM Manipulation** (Modul 2), **PHP SSR** (Modul 3), serta **Object-Oriented Programming (OOP PHP)** (Sprint 05).
 
-### ✨ 1. Modul 3 (PHP Prosedural & Server-Side Rendering — Tema ExploreHUB)
+### 🧱 1. Sprint 05: Object-Oriented Programming (OOP PHP — Tema ExploreHUB)
+- **Task 01: Create a Class (Blueprint Representasi Data)**
+  - Class `AdventureProgram` (`apps/explorehub/classes/AdventureProgram.php`): Blueprint entitas paket petualangan.
+  - Class `ExploreHub` (`apps/explorehub/classes/ExploreHub.php`): Blueprint platform manager pengelola profil & koleksi paket petualangan (analogi Class `President` pada slide Pertemuan 6).
+- **Task 02: Add Properties and Methods (Encapsulation, Constructor & Getters)**
+  - **Encapsulation**: Properti berakses `private` (`$id`, `$name`, `$category`, `$location`, `$price`, `$rating`, `$status`, `$programs`, dll.) terlindungi dari manipulasi langsung.
+  - **Constructor**: `__construct()` dengan type hinting untuk instansiasi objek terstruktur.
+  - **Public Methods**: `getName()`, `getPrice()`, `getFormattedPrice()`, `getStatusBadge()`, `getBookingUrl()`, `getProfile()`, `getPrograms()`, `filterPrograms()`, `getTotalPrograms()`, `getPriceRange()`, `getAveragePrice()`.
+- **Task 03: Generate Dynamic Content with Object (SSR Grid Cards via Object)**
+  - Instansiasi 8 objek `AdventureProgram` dan objek platform `$exploreHub`.
+  - Render Server-Side (SSR) kartu grid petualangan dan statistik dashboard murni melalui pemanggilan method objek (`$prog->getName()`, `$prog->getStatusBadge()`, `$prog->getFormattedPrice()`, dll.).
+  - Demo *"Show Your OOP Process"* (Slide 10) terintegrasi langsung di antarmuka halaman `program-prioritas.php`.
+
+### ✨ 2. Modul 3 (PHP Prosedural & Server-Side Rendering — Tema ExploreHUB)
 - **Task 01: Create PHP Page (Variabel PHP ExploreHUB)**
   - Menginisialisasi variabel PHP yang relevan dengan ekosistem ExploreHUB: `$namaPlatform` ("ExploreHub"), `$tagline`, `$statusLayanan` ("Buka & Reservasi Aktif"), `$musimPetualangan`, `$pusatOperasional`, `$kontakLayanan`, dan `$programPrioritas`.
 - **Task 02: Process Data with PHP**

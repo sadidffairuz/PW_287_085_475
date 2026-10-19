@@ -15,6 +15,48 @@ Semua halaman memakai satu palet utama editorial: cream/paper (`#f4efe4`, `#fbf8
 - `public/maps.html` — Peta eksplorasi interaktif berbasis Leaflet.
 - `public/booking.html` — Halaman formulir reservasi dinamis & konfirmasi WhatsApp.
 - `assets/data/destinations.json` — Dataset REST API petualangan Indonesia.
+- `classes/AdventureProgram.php` — Class Blueprint paket petualangan (Sprint 05 OOP PHP).
+- `classes/ExploreHub.php` — Class Platform Manager & koleksi paket (Sprint 05 OOP PHP).
+
+---
+
+## 🧱 Implementasi Sprint 05: Object-Oriented Programming (OOP) PHP
+
+### • Task 01: Create a Class (Blueprint Representasi Data)
+- **Class `AdventureProgram` (`classes/AdventureProgram.php`):**
+  Blueprint representasi data paket petualangan outdoor & ekowisata Indonesia.
+- **Class `ExploreHub` (`classes/ExploreHub.php`):**
+  Blueprint entitas platform yang mengelola metadata organisasi, periode, status, serta koleksi objek program petualangan (analogi Class `President` pada slide Pertemuan 6).
+
+### • Task 02: Add Properties and Methods (Encapsulation, Constructor & Behavior Methods)
+- **Encapsulation (Private Properties):**
+  Seluruh properti dideklarasikan dengan access modifier `private` (`$id`, `$name`, `$category`, `$location`, `$price`, `$rating`, `$reviews`, `$duration`, `$difficulty`, `$status`, `$dailyQuota`, `$guide`, `$image`, `$description`, `$facilities`, `$programs`, dll.) agar data terlindungi.
+- **Constructor Injection:**
+  Metode `__construct()` untuk inisialisasi properti saat instansiasi objek dengan validasi tipe data (*type hinting*).
+- **Public Getter & Presentation Methods:**
+  - `getName()`, `getPrice()`, `getRating()`, dll.
+  - `getFormattedPrice()` ➜ memformat harga angka menjadi rupiah (contoh: `Rp 275.000`).
+  - `getStatusBadge()` ➜ menghasilkan HTML badge dinamis (*Tersedia*, *Slot Terbatas*, *Hampir Penuh*, *Musim Terbaik*, *Promo Spesial*).
+  - `getBookingUrl()` ➜ menyusun link reservasi dinamis ke `booking.html` membawa query parameter.
+  - `getProfile()` ➜ mengembalikan profil ringkas platform sesuai kriteria slide Pertemuan 6 (`$this->name . " — " . $this->period`).
+  - `getPrograms()` ➜ mengembalikan koleksi objek program petualangan.
+  - `getTotalPrograms()`, `getPriceRange()`, `getAveragePrice()`, `filterPrograms()`.
+
+### • Task 03: Generate Dynamic Content with Object (SSR Grid Cards Menggunakan Objek)
+- **Instansiasi Objek:**
+  Instansiasi 8 objek `AdventureProgram` dan objek utama `$exploreHub` dengan metode `$exploreHub->addProgram(...)`.
+- **Render Dynamic Server-Side Content (SSR) Berbasis Method Objek:**
+  Hero section, badge operasional, statistik ringkasan, dan kartu grid di-generate murni melalui pemanggilan method objek:
+  ```php
+  <?php foreach ($programTampil as $prog): ?>
+    <h3><?= htmlspecialchars($prog->getName()); ?></h3>
+    <div class="status"><?= $prog->getStatusBadge(); ?></div>
+    <strong><?= $prog->getFormattedPrice(); ?></strong>
+    <a href="<?= htmlspecialchars($prog->getBookingUrl()); ?>">Pesan Sekarang →</a>
+  <?php endforeach; ?>
+  ```
+- **Demo "Show Your OOP Process" (Slide 10):**
+  Menampilkan arsitektur OOP, demo pemanggilan method, dan jawaban terhadap 5 pertanyaan diskusi konsep OOP (Class, Object, Property, Method, Constructor, Encapsulation).
 
 ---
 

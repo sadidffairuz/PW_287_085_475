@@ -2,257 +2,216 @@
 /**
  * ==============================================================================
  * ExploreHub — Platform Eksplorasi Petualangan & Wisata Alam Indonesia
- * Modul 3: PHP Prosedural, Pemrosesan Data & Server-Side Rendering (SSR)
+ * Pertemuan 6 Web Programming: From Procedural to Object-Oriented (Sprint 05)
  * Laboratorium Informatika - Universitas Muhammadiyah Malang
  * 
  * PEMENUHAN TUGAS:
- * • Task 01: Create PHP page
- *   Variabel PHP sesuai tema ExploreHUB:
- *   - $namaPlatform, $tagline, $statusLayanan, $musimPetualangan, $pusatOperasional, $programPrioritas
- * 
- * • Task 02: Process Data with PHP
- *   - Array Multidimensi ($programPrioritas berisi data paket petualangan bersarang)
- *   - Conditional Status / Badge (switch/case penentu warna & label ketersediaan slot)
- *   - Loop Penomoran ($index + 1 dengan format berurut #01, #02, #03...)
- * 
- * • Task 03: Build Dynamic Server-Side Content
- *   - Server-Side Rendering (SSR) dynamic grid cards Program Prioritas ExploreHUB
- *   - Melanjutkan struktur tema editorial ExploreHub (cream/paper + forest + terracotta/sand)
- *   - Filter kategori server-side (?kategori=...), search form GET (?q=...), integrasi booking
+ * • Task 01: Create a Class (Class AdventureProgram & Class ExploreHub)
+ * • Task 02: Add Properties and Methods (Encapsulation private, Constructor & Methods)
+ * • Task 03: Generate Dynamic Content with Object (SSR dynamic grid cards via Object Methods)
  * ==============================================================================
  */
 
-// --------------------------------------------------------------------------
-// TASK 01: INISIALISASI VARIABEL PHP (SESUAI TEMA EXPLOREHUB)
-// --------------------------------------------------------------------------
-$namaPlatform      = "ExploreHub";
-$tagline           = "Jelajahi Indonesia, Satu Petualangan Setiap Perjalanan";
-$statusLayanan     = "Buka & Reservasi Aktif";
-$musimPetualangan  = "Musim Kemarau & Cuaca Tropis Optimal (2026)";
-$pusatOperasional  = "Kota Batu & Labuan Bajo, Indonesia";
-$kontakLayanan     = "+62 812-3456-7890 (WhatsApp Official)";
-$tanggalPembaruan  = date("d F Y");
+// Load Class Definitions (Task 01)
+require_once __DIR__ . '/../classes/AdventureProgram.php';
+require_once __DIR__ . '/../classes/ExploreHub.php';
 
-// --------------------------------------------------------------------------
-// TASK 02: ARRAY MULTIDIMENSI PROGRAM PETUALANGAN PRIORITAS
-// --------------------------------------------------------------------------
-$programPrioritas = [
-    [
-        "id"             => "EXP-01",
-        "nama"           => "Rafting Sungai Brantas Extreme",
-        "kategori"       => "air",
-        "kategori_label" => "Air & Sungai",
-        "lokasi"         => "Kota Batu, Jawa Timur",
-        "region"         => "Jawa Timur",
-        "harga"          => 125000,
-        "rating"         => 4.9,
-        "ulasan"         => 184,
-        "durasi"         => "2.5 Jam",
-        "kesulitan"      => "Sedang - Menantang",
-        "status"         => "Tersedia",
-        "kuota_harian"   => "40 Peserta / Hari",
-        "pemandu"        => "Instruktur Berlisensi Internasional",
-        "gambar"         => "https://images.unsplash.com/photo-1530866495561-507c1c9b4b4f?auto=format&fit=crop&w=900&q=80",
-        "deskripsi"      => "Taklukkan jeram berbatu Sungai Brantas dengan pemandangan tebing alam dan perkebunan apel Kota Batu. Paket lengkap peralatan standar internasional dan makan siang prasmanan.",
-        "fasilitas"      => ["Peralatan Standar Internasional", "Rescue Team & Guide", "Makan Siang Prasmanan", "Dokumentasi Foto", "Asuransi"]
-    ],
-    [
-        "id"             => "EXP-02",
-        "nama"           => "Sunrise Trekking & Lautan Pasir Bromo",
-        "kategori"       => "alam",
-        "kategori_label" => "Gunung & Alam",
-        "lokasi"         => "Taman Nasional Bromo Tengger Semeru",
-        "region"         => "Jawa Timur",
-        "harga"          => 275000,
-        "rating"         => 4.95,
-        "ulasan"         => 320,
-        "durasi"         => "1 Hari Penuh",
-        "kesulitan"      => "Mudah - Sedang",
-        "status"         => "Hampir Penuh",
-        "kuota_harian"   => "30 Peserta / Hari",
-        "pemandu"        => "Ranger Suku Tengger",
-        "gambar"         => "https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=900&q=80",
-        "deskripsi"      => "Menyaksikan golden sunrise legendaris di Penanjakan 1, dilanjutkan petualangan melintasi Lautan Pasir Berbisik dan kawah aktif Bromo dengan Jeep 4x4 Hardtop.",
-        "fasilitas"      => ["Jeep 4x4 Hardtop", "Tiket Masuk TNBTS", "Pemandu Lokal Tengger", "Kopi Hangat Puncak", "Masker Debu"]
-    ],
-    [
-        "id"             => "EXP-03",
-        "nama"           => "Lava Tour Jeep Offroad Merapi",
-        "kategori"       => "adrenalin",
-        "kategori_label" => "Adrenalin & Adventure",
-        "lokasi"         => "Kaliurang, Sleman, DI Yogyakarta",
-        "region"         => "Yogyakarta",
-        "harga"          => 450000,
-        "rating"         => 4.88,
-        "ulasan"         => 240,
-        "durasi"         => "2 Jam Manuver",
-        "kesulitan"      => "Menantang",
-        "status"         => "Tersedia",
-        "kuota_harian"   => "25 Jeep / Hari",
-        "pemandu"        => "Driver Offroad Handal",
-        "gambar"         => "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",
-        "deskripsi"      => "Menerobos trek berbatu bekas aliran lahar erupsi Merapi, manuver air basah di Sungai Kuning, serta singgah di Bunker Kaliadem dan Museum Sisa Hartaku.",
-        "fasilitas"      => ["1 Unit Jeep 4x4 (4 Seat)", "Driver Berpengalaman", "Helm Pengaman", "Tiket Wisata", "Jas Hujan"]
-    ],
-    [
-        "id"             => "EXP-04",
-        "nama"           => "Scuba Diving & Coral Safari Menjangan",
-        "kategori"       => "air",
-        "kategori_label" => "Air & Laut",
-        "lokasi"         => "Taman Nasional Bali Barat, Bali",
-        "region"         => "Bali",
-        "harga"          => 550000,
-        "rating"         => 4.92,
-        "ulasan"         => 160,
-        "durasi"         => "4 Jam Eksplorasi",
-        "kesulitan"      => "Semua Tingkatan",
-        "status"         => "Slot Terbatas",
-        "kuota_harian"   => "15 Diver / Hari",
-        "pemandu"        => "Dive Master PADI Bersertifikat",
-        "gambar"         => "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80",
-        "deskripsi"      => "Penyelaman terumbu karang vertikal spektakuler di Pulau Menjangan dengan visibilitas jernih hingga 30 meter dan keberagaman biota laut eksotis nusantara.",
-        "fasilitas"      => ["Speedboat Transfer", "Set Alat Selam Lengkap", "Dive Master PADI", "Makan Siang Kotak", "Tiket Konservasi"]
-    ],
-    [
-        "id"             => "EXP-05",
-        "nama"           => "Camping & Milky Way Hunting Ranu Kumbolo",
-        "kategori"       => "alam",
-        "kategori_label" => "Gunung & Alam",
-        "lokasi"         => "Lereng Gunung Semeru, Lumajang",
-        "region"         => "Jawa Timur",
-        "harga"          => 320000,
-        "rating"         => 4.96,
-        "ulasan"         => 210,
-        "durasi"         => "2 Hari 1 Malam",
-        "kesulitan"      => "Sedang",
-        "status"         => "Musim Terbaik",
-        "kuota_harian"   => "20 Tenda / Malam",
-        "pemandu"        => "Guide & Porter Gunung",
-        "gambar"         => "https://images.unsplash.com/photo-1475483768296-6163e08872a1?auto=format&fit=crop&w=900&q=80",
-        "deskripsi"      => "Bermalam di tepi danau kawah alami Ranu Kumbolo pada ketinggian 2.400 mdpl. Saksikan jutaan bintang Bima Sakti dan uap kabut fajar nan magis.",
-        "fasilitas"      => ["Tenda Dome Kapasitas 4", "Sleeping Bag & Matras", "Porter Tenda", "Makan 3 Kali", "Simaksi & Asuransi"]
-    ],
-    [
-        "id"             => "EXP-06",
-        "nama"           => "Tandem Paragliding Gunung Banyak",
-        "kategori"       => "adrenalin",
-        "kategori_label" => "Adrenalin & Udara",
-        "lokasi"         => "Gunung Banyak, Songgokerto, Kota Batu",
-        "region"         => "Jawa Timur",
-        "harga"          => 400000,
-        "rating"         => 4.87,
-        "ulasan"         => 145,
-        "durasi"         => "20 Menit Terbang",
-        "kesulitan"      => "Pemula Ramah",
-        "status"         => "Tersedia",
-        "kuota_harian"   => "18 Penerbangan / Hari",
-        "pemandu"        => "Pilot Paralayang Berlisensi FASI",
-        "gambar"         => "https://images.unsplash.com/photo-1508873696983-2df5293cb32f?auto=format&fit=crop&w=900&q=80",
-        "deskripsi"      => "Terbang tandem bebas di udara terbuka menikmati pemandangan alam perbukitan dan lanskap kota Batu dari ketinggian 1.315 mdpl bersama pilot berlisensi.",
-        "fasilitas"      => ["Pilot Berlisensi FASI", "Harness & Helm", "Video Dokumentasi 4K", "Shuttle Mobil Landasan"]
-    ],
-    [
-        "id"             => "EXP-07",
-        "nama"           => "Snorkeling Komodo & Manta Point Safari",
-        "kategori"       => "air",
-        "kategori_label" => "Air & Laut",
-        "lokasi"         => "Taman Nasional Komodo, Labuan Bajo",
-        "region"         => "NTT",
-        "harga"          => 850000,
-        "rating"         => 4.98,
-        "ulasan"         => 410,
-        "durasi"         => "1 Hari Penuh",
-        "kesulitan"      => "Mudah",
-        "status"         => "Promo Spesial",
-        "kuota_harian"   => "20 Peserta / Trip",
-        "pemandu"        => "Ranger Guide TN Komodo",
-        "gambar"         => "https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?auto=format&fit=crop&w=900&q=80",
-        "deskripsi"      => "Berenang bersama pari Manta raksasa di Manta Point, trekking bukit Pulau Padar tiga warna, dan menyaksikan satwa endemik Komodo di habitat aslinya.",
-        "fasilitas"      => ["Speedboat VIP AC", "Peralatan Snorkeling", "Ranger Guide TN Komodo", "Makan Siang & Buah", "Dokumentasi Drone"]
-    ],
-    [
-        "id"             => "EXP-08",
-        "nama"           => "Eksplorasi Budaya & Rumah Adat Wae Rebo",
-        "kategori"       => "budaya",
-        "kategori_label" => "Budaya & Tradisi",
-        "lokasi"         => "Desa Tradisional Wae Rebo, Manggarai",
-        "region"         => "NTT",
-        "harga"          => 600000,
-        "rating"         => 4.93,
-        "ulasan"         => 130,
-        "durasi"         => "2 Hari 1 Malam",
-        "kesulitan"      => "Sedang",
-        "status"         => "Slot Terbatas",
-        "kuota_harian"   => "12 Tamu / Malam",
-        "pemandu"        => "Pemandu Adat Wae Rebo",
-        "gambar"         => "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=900&q=80",
-        "deskripsi"      => "Eksplorasi desa tradisional warisan UNESCO di atas awan berarsitektur ikonik Mbaru Niang. Nikmati kopi khas Manggarai dan upacara adat penerimaan Waelu.",
-        "fasilitas"      => ["Inap di Mbaru Niang", "Upacara Adat Waelu", "Makan Tradisional Khas", "Pemandu Lokal Wae Rebo"]
-    ]
-];
+// ==============================================================================
+// TASK 01 & TASK 02: INSTANSIASI OBJECT DARI CLASS EXPLOREHUB
+// ==============================================================================
+$exploreHub = new ExploreHub(
+    "ExploreHub",
+    "Musim Petualangan & Cuaca Tropis Optimal (2026)",
+    "Jelajahi Indonesia, Satu Petualangan Setiap Perjalanan",
+    "Buka & Reservasi Aktif",
+    "Kota Batu & Labuan Bajo, Indonesia",
+    "+62 812-3456-7890 (WhatsApp Official)"
+);
 
-// --------------------------------------------------------------------------
-// TASK 02: CONDITIONAL STATUS / BADGE HELPER DENGAN SWITCH / CASE
-// --------------------------------------------------------------------------
-function renderStatusBadge($status) {
-    $s = strtolower(trim($status));
-    switch ($s) {
-        case 'tersedia':
-            return '<span class="php-status-badge badge-tersedia"><span class="badge-dot"></span> Tersedia</span>';
-        case 'slot terbatas':
-            return '<span class="php-status-badge badge-terbatas"><span class="badge-dot"></span> Slot Terbatas</span>';
-        case 'hampir penuh':
-            return '<span class="php-status-badge badge-penuh"><span class="badge-dot"></span> Hampir Penuh</span>';
-        case 'musim terbaik':
-            return '<span class="php-status-badge badge-musim"><span class="badge-dot"></span> Musim Terbaik</span>';
-        case 'promo spesial':
-            return '<span class="php-status-badge badge-promo"><span class="badge-dot"></span> Promo Spesial</span>';
-        default:
-            return '<span class="php-status-badge badge-default">' . htmlspecialchars($status) . '</span>';
-    }
-}
+// ==============================================================================
+// TASK 01 & TASK 02: INSTANSIASI 8 OBJECT DARI CLASS ADVENTUREPROGRAM
+// ==============================================================================
+$exploreHub->addProgram(new AdventureProgram(
+    "EXP-01",
+    "Rafting Sungai Brantas Extreme",
+    "air",
+    "Air & Sungai",
+    "Kota Batu, Jawa Timur",
+    "Jawa Timur",
+    125000,
+    4.9,
+    184,
+    "2.5 Jam",
+    "Sedang - Menantang",
+    "Tersedia",
+    "40 Peserta / Hari",
+    "Instruktur Berlisensi Internasional",
+    "https://images.unsplash.com/photo-1530866495561-507c1c9b4b4f?auto=format&fit=crop&w=900&q=80",
+    "Taklukkan jeram berbatu Sungai Brantas dengan panorama tebing pegunungan dan perkebunan apel Kota Batu. Paket lengkap peralatan standar internasional dan makan siang prasmanan.",
+    ["Peralatan Standar Internasional", "Rescue Team & Guide", "Makan Siang Prasmanan", "Dokumentasi Foto", "Asuransi"]
+));
 
-function formatRupiah($nominal) {
-    return "Rp " . number_format($nominal, 0, ',', '.');
-}
+$exploreHub->addProgram(new AdventureProgram(
+    "EXP-02",
+    "Sunrise Trekking & Lautan Pasir Bromo",
+    "alam",
+    "Gunung & Alam",
+    "Taman Nasional Bromo Tengger Semeru",
+    "Jawa Timur",
+    275000,
+    4.95,
+    320,
+    "1 Hari Penuh",
+    "Mudah - Sedang",
+    "Hampir Penuh",
+    "30 Peserta / Hari",
+    "Ranger Suku Tengger",
+    "https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=900&q=80",
+    "Menyaksikan golden sunrise legendaris di Penanjakan 1, dilanjutkan petualangan melintasi Lautan Pasir Berbisik dan kawah aktif Bromo dengan Jeep 4x4 Hardtop.",
+    ["Jeep 4x4 Hardtop", "Tiket Masuk TNBTS", "Pemandu Lokal Tengger", "Kopi Hangat Puncak", "Masker Debu"]
+));
 
-// --------------------------------------------------------------------------
-// TASK 02: PENGOLAHAN DATA DENGAN ARRAY FILTER & STATISTIK AGREGAT
-// --------------------------------------------------------------------------
+$exploreHub->addProgram(new AdventureProgram(
+    "EXP-03",
+    "Lava Tour Jeep Offroad Merapi",
+    "adrenalin",
+    "Adrenalin & Adventure",
+    "Kaliurang, Sleman, DI Yogyakarta",
+    "Yogyakarta",
+    450000,
+    4.88,
+    240,
+    "2 Jam Manuver",
+    "Menantang",
+    "Tersedia",
+    "25 Jeep / Hari",
+    "Driver Offroad Handal",
+    "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",
+    "Menerobos trek berbatu bekas aliran lahar erupsi Merapi, manuver air basah di Sungai Kuning, serta singgah di Bunker Kaliadem dan Museum Sisa Hartaku.",
+    ["1 Unit Jeep 4x4 (4 Seat)", "Driver Berpengalaman", "Helm Pengaman", "Tiket Wisata", "Jas Hujan"]
+));
+
+$exploreHub->addProgram(new AdventureProgram(
+    "EXP-04",
+    "Scuba Diving & Coral Safari Menjangan",
+    "air",
+    "Air & Laut",
+    "Taman Nasional Bali Barat, Bali",
+    "Bali",
+    550000,
+    4.92,
+    160,
+    "4 Jam Eksplorasi",
+    "Semua Tingkatan",
+    "Slot Terbatas",
+    "15 Diver / Hari",
+    "Dive Master PADI Bersertifikat",
+    "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80",
+    "Penyelaman terumbu karang vertikal spektakuler di Pulau Menjangan dengan visibilitas jernih hingga 30 meter dan keberagaman biota laut eksotis nusantara.",
+    ["Speedboat Transfer", "Set Alat Selam Lengkap", "Dive Master PADI", "Makan Siang Kotak", "Tiket Konservasi"]
+));
+
+$exploreHub->addProgram(new AdventureProgram(
+    "EXP-05",
+    "Camping & Milky Way Hunting Ranu Kumbolo",
+    "alam",
+    "Gunung & Alam",
+    "Lereng Gunung Semeru, Lumajang",
+    "Jawa Timur",
+    320000,
+    4.96,
+    210,
+    "2 Hari 1 Malam",
+    "Sedang",
+    "Musim Terbaik",
+    "20 Tenda / Malam",
+    "Guide & Porter Gunung",
+    "https://images.unsplash.com/photo-1475483768296-6163e08872a1?auto=format&fit=crop&w=900&q=80",
+    "Bermalam di tepi danau kawah alami Ranu Kumbolo pada ketinggian 2.400 mdpl. Saksikan jutaan bintang Bima Sakti dan uap kabut fajar nan magis.",
+    ["Tenda Dome Kapasitas 4", "Sleeping Bag & Matras", "Porter Tenda", "Makan 3 Kali", "Simaksi & Asuransi"]
+));
+
+$exploreHub->addProgram(new AdventureProgram(
+    "EXP-06",
+    "Tandem Paragliding Gunung Banyak",
+    "adrenalin",
+    "Adrenalin & Udara",
+    "Gunung Banyak, Songgokerto, Kota Batu",
+    "Jawa Timur",
+    400000,
+    4.87,
+    145,
+    "20 Menit Terbang",
+    "Pemula Ramah",
+    "Tersedia",
+    "18 Penerbangan / Hari",
+    "Pilot Paralayang Berlisensi FASI",
+    "https://images.unsplash.com/photo-1508873696983-2df5293cb32f?auto=format&fit=crop&w=900&q=80",
+    "Terbang tandem bebas di udara terbuka menikmati pemandangan alam perbukitan dan lanskap kota Batu dari ketinggian 1.315 mdpl bersama pilot berlisensi.",
+    ["Pilot Berlisensi FASI", "Harness & Helm", "Video Dokumentasi 4K", "Shuttle Mobil Landasan"]
+));
+
+$exploreHub->addProgram(new AdventureProgram(
+    "EXP-07",
+    "Snorkeling Komodo & Manta Point Safari",
+    "air",
+    "Air & Laut",
+    "Taman Nasional Komodo, Labuan Bajo",
+    "NTT",
+    850000,
+    4.98,
+    410,
+    "1 Hari Penuh",
+    "Mudah",
+    "Promo Spesial",
+    "20 Peserta / Trip",
+    "Ranger Guide TN Komodo",
+    "https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?auto=format&fit=crop&w=900&q=80",
+    "Berenang bersama pari Manta raksasa di Manta Point, trekking bukit Pulau Padar tiga warna, dan menyaksikan satwa endemik Komodo di habitat aslinya.",
+    ["Speedboat VIP AC", "Peralatan Snorkeling", "Ranger Guide TN Komodo", "Makan Siang & Buah", "Dokumentasi Drone"]
+));
+
+$exploreHub->addProgram(new AdventureProgram(
+    "EXP-08",
+    "Eksplorasi Budaya & Rumah Adat Wae Rebo",
+    "budaya",
+    "Budaya & Tradisi",
+    "Desa Tradisional Wae Rebo, Manggarai",
+    "NTT",
+    600000,
+    4.93,
+    130,
+    "2 Hari 1 Malam",
+    "Sedang",
+    "Slot Terbatas",
+    "12 Tamu / Malam",
+    "Pemandu Adat Wae Rebo",
+    "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=900&q=80",
+    "Eksplorasi desa tradisional warisan UNESCO di atas awan berarsitektur ikonik Mbaru Niang. Nikmati kopi khas Manggarai dan upacara adat penerimaan Waelu.",
+    ["Inap di Mbaru Niang", "Upacara Adat Waelu", "Makan Tradisional Khas", "Pemandu Lokal Wae Rebo"]
+));
+
+// ------------------------------------------------------------------------------
+// TASK 02: FILTERING & SEARCH MELALUI METHOD OBJECT $exploreHub
+// ------------------------------------------------------------------------------
 $filterKategori = isset($_GET['kategori']) ? trim($_GET['kategori']) : 'all';
 $filterQuery    = isset($_GET['q']) ? trim($_GET['q']) : '';
-
-// Filter Array Multidimensi menggunakan array_filter
-$programTampil = array_filter($programPrioritas, function ($item) use ($filterKategori, $filterQuery) {
-    $matchKategori = ($filterKategori === 'all' || $item['kategori'] === $filterKategori);
-    $matchQuery    = empty($filterQuery) || 
-                     (stripos($item['nama'], $filterQuery) !== false) || 
-                     (stripos($item['lokasi'], $filterQuery) !== false) ||
-                     (stripos($item['kategori_label'], $filterQuery) !== false);
-    return $matchKategori && $matchQuery;
-});
-
-// Hitung metrik agregat menggunakan fungsi PHP
-$totalSemuaPaket  = count($programPrioritas);
-$totalTampil      = count($programTampil);
-$daftarHarga      = array_column($programPrioritas, 'harga');
-$hargaTermurah    = min($daftarHarga);
-$hargaTertinggi   = max($daftarHarga);
-$rataRataHarga    = round(array_sum($daftarHarga) / $totalSemuaPaket);
+$programTampil  = $exploreHub->filterPrograms($filterKategori, $filterQuery);
+$tanggalPembaruan = date("d F Y");
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Program Prioritas Petualangan — <?= htmlspecialchars($namaPlatform); ?> (PHP SSR)</title>
-  <meta name="description" content="<?= htmlspecialchars($tagline); ?> - Dashboard Server-Side Rendering Modul 3">
+  <title>Program Prioritas Petualangan — <?= htmlspecialchars($exploreHub->getName()); ?> (PHP OOP)</title>
+  <meta name="description" content="<?= htmlspecialchars($exploreHub->getTagline()); ?> - Object-Oriented PHP Dashboard">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
   <style>
-    /* STYLING KHUSUS EXPLOREHUB PROGRAM PRIORITAS (PHP SSR) */
+    /* STYLING KHUSUS EXPLOREHUB PROGRAM PRIORITAS (PHP OOP & SSR) */
     .php-hero{
       background: linear-gradient(125deg, rgba(23,61,50,0.95), rgba(36,89,71,0.90)),
                   url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2200&q=85") center/cover;
@@ -315,24 +274,78 @@ $rataRataHarga    = round(array_sum($daftarHarga) / $totalSemuaPaket);
       color: #fff;
     }
 
+    /* PROFILE CARD HERO (ANALOGI TAMPILAN SLIDE 9 & 10 PRESIDENTKU) */
     .php-info-card{
       background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px);
       border: 1px solid rgba(255,255,255,0.18);
       border-radius: 24px;
       padding: 30px 32px;
       box-shadow: 0 20px 50px rgba(0,0,0,0.25);
     }
-    .php-info-card h3{
-      margin: 0 0 10px;
-      font: 700 20px Manrope;
+    .profile-card-header{
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .profile-avatar-emblem{
+      width: 58px;
+      height: 58px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--sand), var(--lime));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font: 800 24px Manrope;
+      color: var(--forest);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    .profile-card-header h3{
+      margin: 0;
+      font: 800 20px Manrope;
       color: #fff;
     }
-    .php-info-card p{
+    .profile-card-header p{
+      margin: 4px 0 0;
+      font-size: 12px;
+      color: var(--lime);
+      font-weight: 700;
+    }
+    .profile-method-quote{
+      font-style: italic;
+      color: #e2e8f0;
+      background: rgba(0,0,0,0.3);
+      padding: 10px 14px;
+      border-radius: 8px;
       font-size: 13px;
-      color: rgba(255,255,255,0.82);
-      line-height: 1.7;
-      margin: 0 0 18px;
+      margin-bottom: 16px;
+      border-left: 3px solid var(--lime);
+    }
+    .profile-program-pillars{
+      margin-bottom: 16px;
+    }
+    .pillar-label{
+      display: block;
+      font-size: 10px;
+      font-weight: 800;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .pillar-tags{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .pillar-tag{
+      background: rgba(255,255,255,0.12);
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      color: #fff;
+      font-weight: 600;
     }
 
     /* SUMMARY STATS SECTION */
@@ -624,7 +637,7 @@ $rataRataHarga    = round(array_sum($daftarHarga) / $totalSemuaPaket);
       background: var(--forest-2);
     }
 
-    /* CODE INSPECTOR PANEL UNTUK EVALUASI DOSEN / ASISTEN LAB */
+    /* DEMO OOP SECTION (SESUAI SLIDE PERTEMUAN 6 HALAMAN 10) */
     .php-inspector-section{
       background: #17241d;
       color: #f1f5f3;
@@ -638,7 +651,7 @@ $rataRataHarga    = round(array_sum($daftarHarga) / $totalSemuaPaket);
     }
     .inspector-header p{
       color: #a4b4ab;
-      max-width: 620px;
+      max-width: 650px;
       margin: 0 0 30px;
       font-size: 14px;
       line-height: 1.6;
@@ -647,6 +660,7 @@ $rataRataHarga    = round(array_sum($daftarHarga) / $totalSemuaPaket);
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 24px;
+      margin-bottom: 30px;
     }
     .code-card{
       background: #0f1813;
@@ -670,6 +684,40 @@ $rataRataHarga    = round(array_sum($daftarHarga) / $totalSemuaPaket);
       color: #e5ede8;
     }
 
+    /* QA PANEL SESUAI SLIDE 10 PERTANYAAN DISKUSI */
+    .qa-box{
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 24px 28px;
+    }
+    .qa-box h3{
+      color: #fff;
+      font: 700 18px Manrope;
+      margin: 0 0 16px;
+    }
+    .qa-list{
+      display: grid;
+      gap: 14px;
+    }
+    .qa-item{
+      background: rgba(0,0,0,0.25);
+      padding: 14px 18px;
+      border-radius: 10px;
+      border-left: 3px solid var(--lime);
+    }
+    .qa-item strong{
+      display: block;
+      color: var(--lime);
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+    .qa-item span{
+      color: #d1ded6;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
     @media(max-width: 1024px){
       .php-hero-grid{ grid-template-columns: 1fr; }
       .stats-container{ grid-template-columns: repeat(2, 1fr); }
@@ -691,13 +739,13 @@ $rataRataHarga    = round(array_sum($daftarHarga) / $totalSemuaPaket);
   <header class="site-nav">
     <a class="brand" href="index.html">
       <span class="brand-mark">EH</span>
-      <span><?= htmlspecialchars($namaPlatform); ?></span>
+      <span><?= htmlspecialchars($exploreHub->getName()); ?></span>
     </a>
     <nav>
       <a href="index.html#jelajah">Jelajah</a>
       <a href="index.html#pengalaman">Pengalaman</a>
       <a href="index.html#eksplorasi-api">Live API</a>
-      <a href="program-prioritas.php" style="color:var(--lime);font-weight:800;">Program Prioritas (PHP)</a>
+      <a href="program-prioritas.php" style="color:var(--lime);font-weight:800;">Program Prioritas (PHP OOP)</a>
       <a href="maps.html">Peta</a>
       <a href="booking.html">Booking</a>
     </nav>
@@ -706,74 +754,93 @@ $rataRataHarga    = round(array_sum($daftarHarga) / $totalSemuaPaket);
     </div>
   </header>
 
-  <!-- TASK 01: HERO SECTION DENGAN VARIABEL PHP TEMA EXPLOREHUB -->
+  <!-- TASK 03: HERO SECTION DINAMIS DENGAN OBJECT EXPLOREHUB -->
   <section class="php-hero">
     <div class="php-hero-grid">
       <div>
-        <span class="hero-editorial-badge">★ PROGRAM PRIORITAS EXPLOREHUB</span>
+        <span class="hero-editorial-badge">⚡ OBJECT-ORIENTED PHP (SPRINT 05)</span>
         <h1 class="hero-main-title">
           Petualangan Prioritas<br>
-          <em>Terbaik di Indonesia.</em>
+          <em><?= htmlspecialchars($exploreHub->getName()); ?></em>
         </h1>
         <p class="hero-subtitle">
-          <?= htmlspecialchars($tagline); ?>. Platform terpadu kurasi aktivitas outdoor, 
-          ekowisata, dan petualangan menantang dari Sabang sampai Merauke yang siap dipesan secara real-time.
+          <?= htmlspecialchars($exploreHub->getTagline()); ?>. Platform terpadu kurasi aktivitas outdoor, 
+          ekowisata, dan petualangan menantang dari Sabang sampai Merauke berbasis Object-Oriented PHP.
         </p>
 
-        <!-- Variabel PHP Utama (Task 01) -->
+        <!-- Variabel/Method Output dari Object $exploreHub -->
         <div class="meta-pills-row">
           <div class="meta-pill-item">
-            Platform: <strong><?= htmlspecialchars($namaPlatform); ?></strong>
+            Platform: <strong><?= htmlspecialchars($exploreHub->getName()); ?></strong>
           </div>
           <div class="meta-pill-item">
-            Status Layanan: <strong><?= htmlspecialchars($statusLayanan); ?></strong>
+            Status: <strong><?= htmlspecialchars($exploreHub->getStatus()); ?></strong>
           </div>
           <div class="meta-pill-item">
-            Musim Wisata: <strong><?= htmlspecialchars($musimPetualangan); ?></strong>
+            Musim / Periode: <strong><?= htmlspecialchars($exploreHub->getPeriod()); ?></strong>
           </div>
           <div class="meta-pill-item">
-            Hub: <strong><?= htmlspecialchars($pusatOperasional); ?></strong>
+            Hub: <strong><?= htmlspecialchars($exploreHub->getOperationalHub()); ?></strong>
           </div>
         </div>
       </div>
 
+      <!-- KARTU PROFIL OOP (ANALISIS SESUAI SLIDE 9 & 10 PRESIDENTKU) -->
       <div class="php-info-card">
-        <h3>Eksplorasi Tanpa Batas</h3>
-        <p>
-          Setiap program petualangan prioritas di bawah dikurasi dengan standar keamanan ketat, 
-          didampingi instruktur bersertifikat, dan mendukung ekonomi masyarakat lokal secara berkelanjutan.
-        </p>
+        <div class="profile-card-header">
+          <div class="profile-avatar-emblem">EH</div>
+          <div>
+            <h3><?= htmlspecialchars($exploreHub->getName()); ?></h3>
+            <p><?= htmlspecialchars($exploreHub->getPeriod()); ?></p>
+          </div>
+        </div>
+
+        <!-- Memanggil method $exploreHub->getProfile() sesuai standar slide -->
+        <div class="profile-method-quote">
+          "<?= htmlspecialchars($exploreHub->getProfile()); ?>"
+        </div>
+
+        <div class="profile-program-pillars">
+          <span class="pillar-label">Program Pilar Petualangan:</span>
+          <div class="pillar-tags">
+            <span class="pillar-tag">🌊 Arung Jeram</span>
+            <span class="pillar-tag">🏔️ Gunung Bromo</span>
+            <span class="pillar-tag">⚡ Offroad Merapi</span>
+            <span class="pillar-tag">🤿 Diving Menjangan</span>
+          </div>
+        </div>
+
         <div style="border-top:1px solid rgba(255,255,255,0.15);padding-top:14px;font-size:12px;color:rgba(255,255,255,0.7);">
           📅 Pembaruan Katalog: <strong><?= htmlspecialchars($tanggalPembaruan); ?></strong><br>
-          📞 Hubungi Admin Reservasi: <strong><?= htmlspecialchars($kontakLayanan); ?></strong>
+          📞 Layanan Reservasi: <strong><?= htmlspecialchars($exploreHub->getContact()); ?></strong>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TASK 02: RINGKASAN STATISTIK AGREGAT DENGAN PHP -->
+  <!-- TASK 03: SUMMARY STATS BERBASIS METHOD OBJECT ($exploreHub) -->
   <section class="php-stats-section">
     <div class="stats-container">
       <div class="stat-box">
-        <small>TOTAL PROGRAM PRIORITAS</small>
-        <strong><?= $totalSemuaPaket; ?> Paket Pilihan</strong>
+        <small>TOTAL PROGRAM (OBJECT METHOD)</small>
+        <strong><?= $exploreHub->getTotalPrograms(); ?> Paket Prioritas</strong>
       </div>
       <div class="stat-box">
-        <small>RENTANG HARGA PAKET</small>
-        <strong><?= formatRupiah($hargaTermurah); ?> - <?= formatRupiah($hargaTertinggi); ?></strong>
+        <small>RENTANG HARGA (OBJECT METHOD)</small>
+        <strong><?= $exploreHub->getPriceRange(); ?></strong>
       </div>
       <div class="stat-box">
-        <small>RATA-RATA BIAYA / ORANG</small>
-        <strong><?= formatRupiah($rataRataHarga); ?></strong>
+        <small>RATA-RATA HARGA (OBJECT METHOD)</small>
+        <strong><?= $exploreHub->getAveragePrice(); ?></strong>
       </div>
       <div class="stat-box">
         <small>STATUS OPERASIONAL</small>
-        <span class="php-status-badge badge-tersedia"><span class="badge-dot"></span> <?= htmlspecialchars($statusLayanan); ?></span>
+        <span class="php-status-badge badge-tersedia"><span class="badge-dot"></span> <?= htmlspecialchars($exploreHub->getStatus()); ?></span>
       </div>
     </div>
   </section>
 
-  <!-- TASK 03: SSR DYNAMIC GRID CARDS PROGRAM PRIORITAS -->
+  <!-- TASK 03: SSR DYNAMIC GRID CARDS MENGGUNAKAN METHOD OBJECT -->
   <main class="program-section">
     <div class="program-filter-bar">
       <!-- Filter Kategori Server-Side -->
@@ -801,76 +868,76 @@ $rataRataHarga    = round(array_sum($daftarHarga) / $totalSemuaPaket);
     <?php if (empty($programTampil)): ?>
       <div style="background:#fff;padding:60px 20px;border-radius:20px;text-align:center;border:1px dashed rgba(23,36,29,0.2);">
         <h3 style="font:700 22px Manrope;color:var(--forest);margin:0 0 8px;">Tidak Ada Program Ditemukan</h3>
-        <p style="color:#66776c;font-size:14px;margin:0 0 20px;">Tidak ditemukan program petualangan dengan kata kunci "<?= htmlspecialchars($filterQuery); ?>".</p>
+        <p style="color:#66776c;font-size:14px;margin:0 0 20px;">Tidak ditemukan paket petualangan dengan kata kunci "<?= htmlspecialchars($filterQuery); ?>".</p>
         <a class="btn-book-ssr" href="program-prioritas.php">Tampilkan Semua Petualangan</a>
       </div>
     <?php else: ?>
-      <!-- SSR Dynamic Grid Container -->
+      <!-- SSR Dynamic Grid Container dari Objek AdventureProgram -->
       <div class="program-grid">
         <?php 
-        // TASK 02: LOOP PENOMORAN ($index + 1 dengan format berurut #01, #02, #03...)
+        // TASK 03: Loop Penomoran (#01, #02...) & Mengakses Method dari Tiap Object
         $nomorIndex = 1;
-        foreach ($programTampil as $item): 
+        foreach ($programTampil as $prog): 
             $nomorUrut = sprintf("%02d", $nomorIndex++);
         ?>
           <article class="program-card">
             <div class="program-media">
-              <img src="<?= htmlspecialchars($item['gambar']); ?>" alt="<?= htmlspecialchars($item['nama']); ?>" loading="lazy">
-              <!-- Loop Penomoran Badge -->
+              <img src="<?= htmlspecialchars($prog->getImage()); ?>" alt="<?= htmlspecialchars($prog->getName()); ?>" loading="lazy">
+              <!-- Penomoran Dinamis -->
               <span class="program-number-badge">#<?= $nomorUrut; ?> PRIORITAS</span>
               
               <div class="program-status-wrap">
-                <!-- Task 02: Conditional Status / Badge PHP -->
-                <?= renderStatusBadge($item['status']); ?>
+                <!-- Memanggil Method $prog->getStatusBadge() -->
+                <?= $prog->getStatusBadge(); ?>
               </div>
 
               <div class="program-rating-badge">
-                ★ <?= number_format($item['rating'], 2); ?> (<?= $item['ulasan']; ?> review)
+                ★ <?= number_format($prog->getRating(), 2); ?> (<?= $prog->getReviews(); ?> review)
               </div>
             </div>
 
             <div class="program-body">
-              <span class="program-category-pill"><?= htmlspecialchars($item['kategori_label']); ?></span>
-              <h3 class="program-title"><?= htmlspecialchars($item['nama']); ?></h3>
-              <p class="program-desc"><?= htmlspecialchars($item['deskripsi']); ?></p>
+              <span class="program-category-pill"><?= htmlspecialchars($prog->getCategoryLabel()); ?></span>
+              <h3 class="program-title"><?= htmlspecialchars($prog->getName()); ?></h3>
+              <p class="program-desc"><?= htmlspecialchars($prog->getDescription()); ?></p>
 
-              <!-- Metadata List Program -->
+              <!-- Metadata List Program dari Method Object -->
               <div class="program-meta-list">
                 <div class="meta-row">
                   <span>Lokasi:</span>
-                  <strong><?= htmlspecialchars($item['lokasi']); ?></strong>
+                  <strong><?= htmlspecialchars($prog->getLocation()); ?></strong>
                 </div>
                 <div class="meta-row">
                   <span>Durasi &amp; Tingkat:</span>
-                  <strong><?= htmlspecialchars($item['durasi']); ?> · <?= htmlspecialchars($item['kesulitan']); ?></strong>
+                  <strong><?= htmlspecialchars($prog->getDuration()); ?> · <?= htmlspecialchars($prog->getDifficulty()); ?></strong>
                 </div>
                 <div class="meta-row">
                   <span>Kapasitas Slot:</span>
-                  <strong><?= htmlspecialchars($item['kuota_harian']); ?></strong>
+                  <strong><?= htmlspecialchars($prog->getDailyQuota()); ?></strong>
                 </div>
                 <div class="meta-row">
                   <span>Pemandu:</span>
-                  <strong><?= htmlspecialchars($item['pemandu']); ?></strong>
+                  <strong><?= htmlspecialchars($prog->getGuide()); ?></strong>
                 </div>
               </div>
 
-              <!-- Fasilitas Paket -->
+              <!-- Fasilitas Paket dari Array Object -->
               <div class="facilities-wrap">
                 <span class="label">Fasilitas Termasuk:</span>
                 <div class="facilities-chips">
-                  <?php foreach ($item['fasilitas'] as $f): ?>
-                    <span class="fac-chip">✓ <?= htmlspecialchars($f); ?></span>
+                  <?php foreach ($prog->getFacilities() as $fac): ?>
+                    <span class="fac-chip">✓ <?= htmlspecialchars($fac); ?></span>
                   <?php endforeach; ?>
                 </div>
               </div>
 
-              <!-- Card Footer: Harga & Booking CTA -->
+              <!-- Card Footer: Harga & Booking CTA dari Method Object -->
               <div class="program-footer">
                 <div class="price-box">
                   <small>Biaya / Orang</small>
-                  <strong><?= formatRupiah($item['harga']); ?></strong>
+                  <strong><?= $prog->getFormattedPrice(); ?></strong>
                 </div>
-                <a class="btn-book-ssr" href="booking.html?activity=<?= urlencode($item['nama']); ?>&destination=<?= urlencode($item['lokasi']); ?>">
+                <a class="btn-book-ssr" href="<?= htmlspecialchars($prog->getBookingUrl()); ?>">
                   Pesan Sekarang →
                 </a>
               </div>
@@ -881,61 +948,95 @@ $rataRataHarga    = round(array_sum($daftarHarga) / $totalSemuaPaket);
     <?php endif; ?>
   </main>
 
-  <!-- CODE INSPECTOR SECTION (UNTUK KEMUDAHAN PENILAIAN ASISTEN LAB / DOSEN) -->
+  <!-- DEMO: SHOW YOUR OOP PROCESS (SESUAI SLIDE PERTEMUAN 6 HALAMAN 10) -->
   <section class="php-inspector-section">
     <div class="inspector-header">
-      <h2>Inspeksi Variabel &amp; Pemrosesan Data PHP (Modul 3)</h2>
+      <h2>Demo: Show Your OOP Process (Sprint 05)</h2>
       <p>
-        Bagian ini menyajikan kode dan nilai variabel pada server secara transparan sebagai bukti pemenuhan 
-        <strong>Task 01</strong> (deklarasi variabel ExploreHUB), 
-        <strong>Task 02</strong> (array multidimensi, conditional badge, loop penomoran), dan 
-        <strong>Task 03</strong> (server-side rendering dynamic grid cards).
+        Bagian ini menyajikan arsitektur <strong>Object-Oriented Programming (OOP)</strong> ExploreHUB 
+        sesuai checklist slide Pertemuan 6 (Class, Object, Property, Method, Constructor, dan Encapsulation).
       </p>
     </div>
 
     <div class="inspector-grid">
-      <!-- Task 01 Inspector -->
+      <!-- Code Card 1: Class Definition -->
       <div class="code-card">
-        <h4>Task 01: Variabel Utama Tema ExploreHUB</h4>
+        <h4>Task 01 &amp; Task 02: Class AdventureProgram</h4>
         <pre>
-$namaPlatform     = "<?= htmlspecialchars($namaPlatform); ?>";
-$tagline          = "<?= htmlspecialchars($tagline); ?>";
-$statusLayanan    = "<?= htmlspecialchars($statusLayanan); ?>";
-$musimPetualangan = "<?= htmlspecialchars($musimPetualangan); ?>";
-$pusatOperasional = "<?= htmlspecialchars($pusatOperasional); ?>";
-$kontakLayanan    = "<?= htmlspecialchars($kontakLayanan); ?>";
-$totalPaket       = <?= $totalSemuaPaket; ?>;
-$rataRataHarga    = <?= $rataRataHarga; ?>; // <?= formatRupiah($rataRataHarga); ?>
+class AdventureProgram {
+    // Encapsulation (Private Properties)
+    private string $id;
+    private string $name;
+    private string $category;
+    private int $price;
+    private string $status;
+
+    // Constructor
+    public function __construct(...) { ... }
+
+    // Method Getter & Behavior
+    public function getName(): string { return $this->name; }
+    public function getFormattedPrice(): string {
+        return "Rp " . number_format($this->price, 0, ',', '.');
+    }
+    public function getStatusBadge(): string { ... }
+}
         </pre>
       </div>
 
-      <!-- Task 02 & Task 03 Inspector -->
+      <!-- Code Card 2: Object Usage -->
       <div class="code-card">
-        <h4>Task 02 &amp; Task 03: Data Processing &amp; SSR Grid</h4>
+        <h4>Task 03: Object Instantiation &amp; SSR Calling</h4>
         <pre>
-// Array Multidimensi: <?= $totalSemuaPaket; ?> program petualangan bersarang
-// Loop Penomoran: #01 sampai #<?= sprintf("%02d", $totalSemuaPaket); ?>
-// Conditional Status & Badge:
-   - renderStatusBadge("Tersedia")
-   - renderStatusBadge("Slot Terbatas")
-   - renderStatusBadge("Hampir Penuh")
-   - renderStatusBadge("Musim Terbaik")
-   - renderStatusBadge("Promo Spesial")
-// SSR Dynamic Content:
-   - Filter Kategori: "<?= htmlspecialchars($filterKategori); ?>"
-   - Program Ditampilkan: <?= $totalTampil; ?> kartu dinamis
+// Instansiasi Object Platform &amp; Program
+$exploreHub = new ExploreHub("ExploreHub", "2026", ...);
+$exploreHub->addProgram(new AdventureProgram("EXP-01", ...));
+
+// Render Data via Object Methods:
+echo $exploreHub->getProfile();
+echo $prog->getName();
+echo $prog->getFormattedPrice();
+echo $prog->getStatusBadge();
+echo $prog->getBookingUrl();
         </pre>
+      </div>
+    </div>
+
+    <!-- Diskusi Konsep OOP Sesuai Slide 10 -->
+    <div class="qa-box">
+      <h3>Pertanyaan Diskusi (Checklist Pertemuan 6 — Slide 10)</h3>
+      <div class="qa-list">
+        <div class="qa-item">
+          <strong>1. Class apa yang dibuat?</strong>
+          <span>Dibuat <code>AdventureProgram</code> (blueprint entitas paket petualangan alam) dan <code>ExploreHub</code> (blueprint platform manager pengelola profil &amp; koleksi paket).</span>
+        </div>
+        <div class="qa-item">
+          <strong>2. Object apa yang digunakan?</strong>
+          <span>Object <code>$exploreHub</code> untuk mengelola metadata platform dan 8 object <code>$prog</code> untuk masing-masing destinasi petualangan prioritas.</span>
+        </div>
+        <div class="qa-item">
+          <strong>3. Property apa yang dimiliki object?</strong>
+          <span>Semua properti berstatus <code>private</code> (Encapsulation): <code>$id</code>, <code>$name</code>, <code>$period</code>, <code>$category</code>, <code>$location</code>, <code>$price</code>, <code>$rating</code>, <code>$status</code>, <code>$programs</code>, dll.</span>
+        </div>
+        <div class="qa-item">
+          <strong>4. Method apa yang dibuat?</strong>
+          <span>Constructor <code>__construct()</code>, Getter methods, serta method behavior: <code>getProfile()</code>, <code>getPrograms()</code>, <code>getFormattedPrice()</code>, <code>getStatusBadge()</code>, <code>getBookingUrl()</code>, dan <code>filterPrograms()</code>.</span>
+        </div>
+        <div class="qa-item">
+          <strong>5. Bagaimana object menghasilkan data pada halaman?</strong>
+          <span>PHP menginstansiasi objek di server-side, lalu template HTML mengekstrak data murni melalui pemanggilan method objek (contoh: <code>$exploreHub-&gt;getProfile()</code> dan <code>$prog-&gt;getStatusBadge()</code>).</span>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- SITE FOOTER -->
   <footer class="site-footer">
-    <div class="footer-brand"><span class="brand-mark">EH</span><strong><?= htmlspecialchars($namaPlatform); ?></strong></div>
-    <p><?= htmlspecialchars($tagline); ?> · Modul 3 PHP Server-Side Rendering</p>
+    <div class="footer-brand"><span class="brand-mark">EH</span><strong><?= htmlspecialchars($exploreHub->getName()); ?></strong></div>
+    <p><?= htmlspecialchars($exploreHub->getTagline()); ?> · Sprint 05 PHP Object-Oriented Programming (OOP)</p>
     <div class="footer-links">
       <a href="index.html">Beranda</a>
-      <a href="program-prioritas.php">Program Prioritas (PHP)</a>
+      <a href="program-prioritas.php">Program Prioritas (PHP OOP)</a>
       <a href="maps.html">Peta</a>
       <a href="booking.html">Booking</a>
     </div>
