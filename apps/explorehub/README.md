@@ -53,10 +53,8 @@ Semua halaman memakai satu palet utama editorial: cream/paper (`#f4efe4`, `#fbf8
     <div class="status"><?= $prog->getStatusBadge(); ?></div>
     <strong><?= $prog->getFormattedPrice(); ?></strong>
     <a href="<?= htmlspecialchars($prog->getBookingUrl()); ?>">Pesan Sekarang →</a>
-  <?php endforeach; ?>
-  ```
-- **Demo "Show Your OOP Process" (Slide 10):**
-  Menampilkan arsitektur OOP, demo pemanggilan method, dan jawaban terhadap 5 pertanyaan diskusi konsep OOP (Class, Object, Property, Method, Constructor, Encapsulation).
+- **Sesuai Target Slide 7 sampai Slide 9:**
+  Fokus penuh pada pemenuhan target pembelajaran Sprint 05: Class, Object, Property & Method, Constructor, Encapsulation, dan Dynamic Content Generation dengan Object.
 
 ---
 
