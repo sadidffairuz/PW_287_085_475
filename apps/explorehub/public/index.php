@@ -30,7 +30,7 @@ function e($value) { return htmlspecialchars((string)$value, ENT_QUOTES, 'UTF-8'
 <body>
 <header class="topbar">
   <a class="brand" href="index.php"><span class="brand-symbol">E</span><span>explore<span class="brand-light">hub</span><small>JOURNEYS WITH MEANING</small></span></a>
-  <nav><a href="#pengalaman">Pengalaman</a><a href="#galeri">Inspirasi</a><a href="maps.html">Peta lokasi</a><a href="#cerita">Cerita tamu</a></nav>
+  <nav><a href="#pengalaman">Pengalaman</a><a href="program-prioritas.php" style="color:#d76b2d;font-weight:700;">Program Prioritas (OOP PHP)</a><a href="#galeri">Inspirasi</a><a href="maps.html">Peta lokasi</a><a href="#cerita">Cerita tamu</a></nav>
   <a class="nav-cta" href="booking.php">Rencanakan perjalanan <span>↗</span></a>
 </header>
 <main>
@@ -106,5 +106,5 @@ function e($value) { return htmlspecialchars((string)$value, ENT_QUOTES, 'UTF-8'
 
   <section class="final-cta"><div><p class="eyebrow"><span></span> YOUR NEXT CHAPTER STARTS HERE</p><h2>Tempat baru sedang<br><em>menunggumu.</em></h2></div><a class="btn-gold" href="booking.php">Mulai rencanakan <span>↗</span></a></section>
 </main>
-<footer class="footer"><a class="brand" href="index.php"><span class="brand-symbol">E</span><span>explore<span class="brand-light">hub</span><small>JOURNEYS WITH MEANING</small></span></a><p>Jelajahi Indonesia. Temukan ceritamu.</p><div><a href="#pengalaman">Pengalaman</a><a href="maps.html">Peta</a><a href="booking.php">Booking</a></div><small>© 2026 ExploreHub · Proyek Pemrograman Web · <?= e($periodeImplementasi) ?></small></footer>
+<footer class="footer"><a class="brand" href="index.php"><span class="brand-symbol">E</span><span>explore<span class="brand-light">hub</span><small>JOURNEYS WITH MEANING</small></span></a><p>Jelajahi Indonesia. Temukan ceritamu.</p><div><a href="#pengalaman">Pengalaman</a><a href="program-prioritas.php">Program Prioritas (OOP PHP)</a><a href="maps.html">Peta</a><a href="booking.php">Booking</a></div><small>© 2026 ExploreHub · Proyek Pemrograman Web · <?= e($periodeImplementasi) ?></small></footer>
 </body></html>

@@ -524,7 +524,7 @@ function setApiState(state) {
 // Inisialisasi Kontrol & Event Listeners API Catalog
 function initApiCatalog() {
   const gridContainer = document.getElementById("destinationGrid");
-  if (!gridContainer) return; // Tidak di halaman index.php
+  if (!gridContainer) return;
 
   const searchInput = document.getElementById("apiSearchInput");
   const clearSearchBtn = document.getElementById("clearSearchBtn");

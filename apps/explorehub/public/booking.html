@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking — ExploreHub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body class="booking-page">
+  <header class="booking-nav">
+    <a class="brand light-brand" href="index.html"><span class="brand-mark">EH</span><span>Explore<span>Hub</span></span></a>
+    <nav><a href="index.html">Beranda</a><a href="program-prioritas.php">Program Prioritas (PHP)</a><a href="maps.html">Peta</a><a href="booking.html">Booking</a></nav>
+    <a class="whatsapp-top" href="https://wa.me/6281234567890?text=Halo%20ExploreHub%2C%20saya%20ingin%20bertanya%20tentang%20booking." target="_blank" rel="noopener">◉ WhatsApp</a>
+  </header>
+
+  <main class="booking-main">
+    <section class="booking-intro">
+      <p class="eyebrow">RESERVASI PENGALAMAN</p>
+      <h1>Rencanakan perjalanan<br><em>tanpa ribet.</em></h1>
+      <p>Pilih destinasi, tanggal, dan jumlah peserta. Setelah itu kamu bisa menghubungi penyedia untuk konfirmasi ketersediaan.</p>
+      <div class="booking-trust"><span>01 Pilih</span><span>02 Cek jadwal</span><span>03 Konfirmasi</span></div>
+    </section>
+
+    <section class="booking-card">
+      <div class="booking-card-top">
+        <div><small>EXPLOREHUB BOOKING</small><h2>Mulai reservasi</h2></div>
+        <span class="status-pill">● Jadwal real-time*</span>
+      </div>
+
+      <form id="bookingForm">
+        <div class="form-group full">
+          <label for="activity">Pengalaman</label>
+          <select id="activity" required>
+            <option value="">Pilih pengalaman</option>
+            <option>Rafting</option><option>Camping</option><option>Offroad</option>
+            <option>Trekking</option><option>Diving & Snorkeling</option><option>Paralayang</option>
+            <option>Outbound</option><option>Wisata Alam</option>
+          </select>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="destination">Destinasi</label>
+            <input id="destination" type="text" placeholder="Kota / daerah" required>
+          </div>
+          <div class="form-group">
+            <label for="date">Tanggal</label>
+            <input id="date" type="date" required>
+          </div>
+          <div class="form-group">
+            <label for="people">Jumlah peserta</label>
+            <input id="people" type="number" min="1" value="2" required>
+          </div>
+          <div class="form-group">
+            <label for="name">Nama pemesan</label>
+            <input id="name" type="text" placeholder="Nama lengkap" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Nomor WhatsApp</label>
+            <input id="phone" type="tel" placeholder="08xxxxxxxxxx" required>
+          </div>
+          <div class="form-group">
+            <label for="notes">Catatan <span>(opsional)</span></label>
+            <input id="notes" type="text" placeholder="Contoh: butuh jemputan">
+          </div>
+        </div>
+
+        <button class="submit-booking" type="submit">Cek Ketersediaan &amp; Lanjut →</button>
+        <p class="form-note">* Pada tahap prototype ini, data booking belum tersimpan ke database.</p>
+      </form>
+
+      <div id="bookingSuccess" class="booking-success" hidden>
+        <span class="success-icon">✓</span>
+        <div>
+          <small>PERMINTAAN SIAP</small>
+          <h3 id="successTitle">Booking berhasil disiapkan.</h3>
+          <p id="successText"></p>
+          <a id="waLink" class="button button-green" target="_blank" rel="noopener">Konfirmasi via WhatsApp →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
