@@ -2,7 +2,8 @@
 /**
  * ==============================================================================
  * ExploreHub — Root Redirect / Entry Point
- * Praktikum Pemrograman Web (Modul 3: PHP Prosedural & SSR)
+ * From OOP to MVC (Model-View-Controller)
+ * Laboratorium Informatika - Universitas Muhammadiyah Malang
  * ==============================================================================
  */
 header("Location: public/program-prioritas.php");

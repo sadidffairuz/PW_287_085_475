@@ -6,10 +6,29 @@ Kelompok: **287 — 085 — 475**
 
 ---
 
-## 🧭 ExploreHub — Sprint 02, Modul 3 & Sprint 05 OOP (Branch: `ExploreHUB`)
-Platform eksplorasi dan reservasi petualangan wisata Indonesia dengan desain editorial, peta interaktif, integrasi **Fetch API & Dynamic DOM Manipulation** (Modul 2), **PHP SSR** (Modul 3), serta **Object-Oriented Programming (OOP PHP)** (Sprint 05).
+## 🧭 ExploreHub — Sprint 02, Modul 3, OOP & MVC Architecture (Branch: `ExploreHUB` & `main`)
+Platform eksplorasi dan reservasi petualangan wisata Indonesia dengan desain editorial, peta interaktif, integrasi **Fetch API & Dynamic DOM Manipulation** (Modul 2), **PHP SSR** (Modul 3), **Object-Oriented Programming (OOP PHP)** (Sprint 05), serta arsitektur **Model-View-Controller (MVC)**.
 
-### 🧱 1. Sprint 05: Object-Oriented Programming (OOP PHP — Tema ExploreHUB)
+### 🏛️ 1. From OOP to MVC (Model-View-Controller — Tema ExploreHUB)
+- **Task 01: Design the MVC Structure**
+  - **Model Layer (`apps/explorehub/app/models/`):**
+    - `AdventureProgram.php`: Entity model untuk objek paket petualangan dengan private properties (Encapsulation), constructor, getters, format rupiah, dan status badge dinamis.
+    - `ExploreHubModel.php`: Data repository dan logika bisnis pengelola koleksi paket, pencarian, penyaringan kategori, dan kalkulasi agregat.
+  - **Controller Layer (`apps/explorehub/app/controllers/`):**
+    - `BaseController.php`: Base controller dengan template view renderer (`extract($data)`) dan json response helper.
+    - `ExploreHubController.php`: Controller utama pengatur alur request, interaksi model, dan pemanggilan view template.
+  - **View Layer (`apps/explorehub/app/views/`):**
+    - `layouts/header.php` & `layouts/footer.php`: Reusable presentation layouts.
+    - `program/index.php` & `program/card.php`: Presentation views bebas logika bisnis.
+- **Task 02: Build the Controller**
+  - Mengambil parameter HTTP GET (`kategori` dan `q`).
+  - Berinteraksi dengan `ExploreHubModel` untuk mengambil filtered data dan aggregasi statistik.
+  - Mengirimkan (passing) data terstruktur ke view melalui `$this->renderView('program/index', $data)`.
+- **Task 03: Connect Model, Controller & View**
+  - Front Controller `public/program-prioritas.php` menerima request dan memanggil `(new ExploreHubController())->index()`.
+  - Controller menghubungkan data dari Model ke View secara rapi dan modular.
+
+### 🧱 2. Sprint 05: Object-Oriented Programming (OOP PHP — Tema ExploreHUB)
 - **Task 01: Create a Class (Blueprint Representasi Data)**
   - Class `AdventureProgram` (`apps/explorehub/classes/AdventureProgram.php`): Blueprint entitas paket petualangan.
   - Class `ExploreHub` (`apps/explorehub/classes/ExploreHub.php`): Blueprint platform manager pengelola profil & koleksi paket petualangan (analogi Class `President` pada slide Pertemuan 6).
@@ -21,7 +40,7 @@ Platform eksplorasi dan reservasi petualangan wisata Indonesia dengan desain edi
   - Instansiasi 8 objek `AdventureProgram` dan objek platform `$exploreHub`.
   - Implementasi penuh memenuhi kriteria target pembelajaran Slide 7 sampai Slide 9 (Class, Properties, Methods, Constructor, Encapsulation, Dynamic SSR Cards).
 
-### ✨ 2. Modul 3 (PHP Prosedural & Server-Side Rendering — Tema ExploreHUB)
+### ✨ 3. Modul 3 (PHP Prosedural & Server-Side Rendering — Tema ExploreHUB)
 - **Task 01: Create PHP Page (Variabel PHP ExploreHUB)**
   - Menginisialisasi variabel PHP yang relevan dengan ekosistem ExploreHUB: `$namaPlatform` ("ExploreHub"), `$tagline`, `$statusLayanan` ("Buka & Reservasi Aktif"), `$musimPetualangan`, `$pusatOperasional`, `$kontakLayanan`, dan `$programPrioritas`.
 - **Task 02: Process Data with PHP**
@@ -34,7 +53,7 @@ Platform eksplorasi dan reservasi petualangan wisata Indonesia dengan desain edi
   - Filter kategori server-side (`?kategori=air`, `?kategori=alam`, `?kategori=adrenalin`, `?kategori=budaya`) dan pencarian query string (`?q=...`).
   - Integrasi pemesanan langsung ke `booking.html` dan panel inspeksi variabel kode sumber PHP.
 
-### ✨ 2. Modul 2 (JavaScript DOM Manipulation & Fetch API)
+### ✨ 4. Modul 2 (JavaScript DOM Manipulation & Fetch API)
 - **Task 01: Connect to API**
   - Mengambil data via `async/await fetch()` dengan validasi manual `response.ok` dan `await response.json()`.
 - **Task 02: Display API Data**
@@ -67,13 +86,18 @@ PW_287_085_475/
 │   │   ├── docs/               # Dokumentasi lengkap BatuRafting
 │   │   ├── public/             # Halaman publik (index, booking, service, dll.)
 │   │   └── package.json
-│   └── explorehub/             # Aplikasi ExploreHub (Sprint 02 & Modul 3)
+│   └── explorehub/             # Aplikasi ExploreHub (Sprint 02, Modul 3, OOP & MVC)
+│       ├── app/                # Lapisan MVC (Model-View-Controller)
+│       │   ├── models/         # AdventureProgram.php & ExploreHubModel.php
+│       │   ├── controllers/    # BaseController.php & ExploreHubController.php
+│       │   └── views/          # layouts/ (header, footer) & program/ (index, card)
 │       ├── assets/
 │       │   ├── css/style.css   # Styling editorial theme, API catalog & SSR
 │       │   ├── data/           # destinations.json (REST API dataset)
 │       │   └── js/             # main.js (Modul 2 JS API) & map.js
+│       ├── classes/            # Classes OOP (Sprint 05)
 │       ├── docs/               # design-direction.md
-│       ├── public/             # index.html, program-prioritas.php, index.php, maps.html, booking.html
+│       ├── public/             # program-prioritas.php (Front Controller MVC), index.php, maps.html, booking.html
 │       ├── index.php           # Entry point root PHP
 │       └── README.md
 ├── 1.html                      # Sprint 01 landing page
@@ -85,7 +109,7 @@ PW_287_085_475/
 
 ## 🚀 Panduan Menjalankan
 
-### ExploreHub (PHP Modul 3 & JS API Modul 2)
+### ExploreHub (MVC, OOP & REST API)
 1. **Mode PHP Server:**
    ```powershell
    cd apps/explorehub
